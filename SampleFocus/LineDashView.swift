@@ -37,7 +37,7 @@ class LineDashView: UIView {
         addSubview(openImageView)
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -48,7 +48,7 @@ class LineDashView: UIView {
         borderView.layer.borderWidth =  1
     }
     
-    public override func draw(_ rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         //フォーカス内の罫線の設定
         var i: CGFloat = screenHeight
         i -= screenHeight / 3
