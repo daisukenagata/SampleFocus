@@ -61,7 +61,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         self.cALayerView.tori(vc: self, bool: false)
         self.view.addSubview(self.lineDashView)
         }
-        
+
         switch sender.state {
         case .ended:
             //指が離れた際の座標を取得
