@@ -57,8 +57,9 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         //画面をなぞる場合にフォーカスの設定
         self.cALayerView.effect(vc: self,bool: true, boolSecound: true)
-        self.view.addSubview(self.lineDashView)
         self.cALayerView.tori(vc: self, bool: false)
+        self.view.addSubview(self.lineDashView)
+
 
         switch sender.state {
         case .ended:
