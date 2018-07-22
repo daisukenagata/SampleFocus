@@ -1,6 +1,6 @@
 # SampleFocus Swift4.1 Xcode9.4.1
 
-![](https://github.com/daisukenagata/SampleFocus/blob/master/Forcus.gif?raw=true)
+![](https://github.com/daisukenagata/SampleFocus/blob/master/Focus.gif?raw=true)
 
 説明サイトQita
 
