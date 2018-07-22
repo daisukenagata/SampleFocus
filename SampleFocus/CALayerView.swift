@@ -116,10 +116,10 @@ class CALayerView: UIView {
         vc.lineDashView.layer.borderColor = UIColor.white.cgColor
 
         hollowTargetLayer.bounds = self.bounds
-        hollowTargetLayer.frame.size.height = UIScreen.main.bounds.height + 100
+        hollowTargetLayer.frame.size.height = UIScreen.main.bounds.height
         hollowTargetLayer.position = CGPoint(
             x: self.bounds.width / 2.0,
-            y: (UIScreen.main.bounds.height + 100) / 2.0
+            y: (UIScreen.main.bounds.height) / 2.0
         )
         // 四角いマスクレイヤーを作る
         maskLayer.bounds = hollowTargetLayer.bounds

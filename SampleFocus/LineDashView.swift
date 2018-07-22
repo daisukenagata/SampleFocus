@@ -14,7 +14,7 @@ class LineDashView: UIView {
     var yHeight: CGFloat = 30
     var editing = Bool()
     var applyInitialCroppedImageFrame = Bool()
-    var screenHeight = UIScreen.main.bounds.height
+    var screenHeight = UIScreen.main.bounds.height - 30
     var screenWidth = UIScreen.main.bounds.width
     var cropBoxFrame: CGRect!
     var lineColor = UIBezierPath()
