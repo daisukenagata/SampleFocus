@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0A9414224792E4000ABEEA /* PanGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0A9413224792E4000ABEEA /* PanGestureView.swift */; };
 		BBD893AD20E74130008203C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD893AC20E74130008203C0 /* AppDelegate.swift */; };
 		BBD893AF20E74130008203C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD893AE20E74130008203C0 /* ViewController.swift */; };
 		BBD893B220E74130008203C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD893B020E74130008203C0 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB0A9413224792E4000ABEEA /* PanGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanGestureView.swift; sourceTree = "<group>"; };
 		BBD893A920E74130008203C0 /* SampleFocus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleFocus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD893AC20E74130008203C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBD893AE20E74130008203C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				BBD893AC20E74130008203C0 /* AppDelegate.swift */,
 				BBD893AE20E74130008203C0 /* ViewController.swift */,
 				BBD893DA20E74188008203C0 /* GestureObject.swift */,
+				BB0A9413224792E4000ABEEA /* PanGestureView.swift */,
 				BBD893DE20E746F1008203C0 /* CALayerView.swift */,
 				BBD893DC20E746A8008203C0 /* LineDashView.swift */,
 				BBD893B020E74130008203C0 /* Main.storyboard */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0A9414224792E4000ABEEA /* PanGestureView.swift in Sources */,
 				BBD893DF20E746F1008203C0 /* CALayerView.swift in Sources */,
 				BBD893DD20E746A8008203C0 /* LineDashView.swift in Sources */,
 				BBD893AF20E74130008203C0 /* ViewController.swift in Sources */,
