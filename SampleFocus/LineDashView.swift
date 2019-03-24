@@ -38,7 +38,7 @@ class LineDashView: UIView {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.addSubview(aDecoder: aDecoder)
+        super.init(coder: aDecoder)
     }
 
     override func layoutSubviews() {

@@ -42,7 +42,7 @@ class CALayerView: UIView {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.addSubview(aDecoder: aDecoder)
+        super.init(coder: aDecoder)
     }
 
     func tori(vc: ViewController,bool: Bool){
