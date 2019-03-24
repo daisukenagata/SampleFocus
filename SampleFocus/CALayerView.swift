@@ -24,8 +24,8 @@ class CALayerView: UIView {
     let width: CGFloat = 20
     let height: CGFloat = 22
     let wide: CGFloat = 2
-    
-    
+
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -142,16 +142,12 @@ class CALayerView: UIView {
         
         effectView.frame = hollowTargetLayer.frame
         effectView.layer.mask = maskLayer
-        
-        vc.view.addSubview(vc.imageView)
+
         if boolSecound == false {
             vc.lineDashView.borderView.frame = vc.lineDashView.frame
             vc.view.addSubview(vc.lineDashView.borderView)
         }
         vc.view.addSubview(effectView)
         effectView.isHidden = bool
-        
     }
-    
 }
-

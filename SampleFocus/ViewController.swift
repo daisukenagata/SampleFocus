@@ -32,26 +32,21 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
 
         view.addGestureRecognizer( CommonStructure.swipePanGesture)
         view.backgroundColor = .blue
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
+        
         imageView.image = UIImage(named: "Mac")
         imageView.contentMode = .scaleAspectFit
         imageView.frame = CGRect(x: 30, y: 30, width: view.frame.width - 60, height: view.frame.height - 30)
         view.addSubview(imageView)
         // レイヤーのマスキング
         cALayerView.tori(vc: self, bool: true)
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
         view.layer.addSublayer(cALayerView.hollowTargetLayer)
         view.addSubview(cALayerView)
+        
+        view.addSubview(lineDashView)
+        lineDashView.isHidden = true
     }
-    
+
     @objc func panTapped(sender:UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: view)
         
@@ -59,7 +54,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         DispatchQueue.main.async {
         self.cALayerView.effect(vc: self,bool: true, boolSecound: true)
         self.cALayerView.tori(vc: self, bool: false)
-        self.view.addSubview(self.lineDashView)
+        self.lineDashView.isHidden = false
         }
 
         switch sender.state {
@@ -96,6 +91,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         gestureObject.framePoint = position
         return true
     }
+
     func timerSetting() {
         timer = Timer.scheduledTimer(timeInterval:3.0,
                                      target: self,
@@ -103,6 +99,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
                                      userInfo: nil,
                                      repeats: false)
     }
+
     @objc func animetionSet() {
         if timerFlag == false {
             gestureObject.matchGround(views: self, imageView: imageView)
@@ -111,4 +108,3 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         }
     }
 }
-

@@ -27,7 +27,7 @@ class LineDashView: UIView {
         return openImageView
     }()
 
-    
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
@@ -74,6 +74,4 @@ class LineDashView: UIView {
         UIColor.white.setStroke()
         lineColor4.stroke()
     }
-    
 }
-
