@@ -87,7 +87,7 @@ class GestureObject: UIView {
     }
     //タップされた領域からMaskするViewのサイズ、座標計算
     func updatePoint(point: CGPoint, views: ViewController, touchFlag: TouchFlag)  {
-        
+
         switch touchFlag {
         case .touchNone:break
         case .touchSideRight:
@@ -195,7 +195,7 @@ class GestureObject: UIView {
         views.lineDashView.frame.origin.y  = min(views.lineDashView.frame.origin.y, views.lineDashView.frame.maxY - minSize.height)
         
     }
-    
+
     //フォーカスの形により座標、サイズの設定のメソッド呼び出し
     func matchGround(views: ViewController,imageView: UIImageView) {
         let sizeSet = views.lineDashView.frame.size
@@ -244,7 +244,7 @@ class GestureObject: UIView {
             })
         })
     }
-    
+
     func matchSquareSmall(views: ViewController,imageView: UIImageView){
         UIView.animate(withDuration: TimeInterval(0),
                        animations: {
@@ -272,7 +272,7 @@ class GestureObject: UIView {
             })
         })
     }
-    
+
     func matchSide(views: ViewController,imageView: UIImageView){
         UIView.animate(withDuration: TimeInterval(0),
                        animations: {
@@ -300,7 +300,7 @@ class GestureObject: UIView {
             })
         })
     }
-    
+
     func matchVertical(views: ViewController,imageView: UIImageView){
         UIView.animate(withDuration: TimeInterval(0),
                        animations: {

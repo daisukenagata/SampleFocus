@@ -9,7 +9,7 @@
 import UIKit
 
 class CALayerView: UIView {
-    
+
     var path =  UIBezierPath()
     let maskLayer = CAShapeLayer()
     let hollowTargetLayer = CALayer()
@@ -28,7 +28,7 @@ class CALayerView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
+
         self.frame = UIScreen.main.bounds
         self.frame.size.height = UIScreen.main.bounds.height - 44
         self.addSubview(girdViewLeftTopWidth)
@@ -40,13 +40,13 @@ class CALayerView: UIView {
         self.addSubview(girdViewRightDownWidth)
         self.addSubview(girdViewRightDownHeight)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.addSubview(aDecoder: aDecoder)
     }
-    
+
     func tori(vc: ViewController,bool: Bool){
-        
+
         vc.lineDashView.layer.borderWidth = 1
         vc.lineDashView.layer.borderColor = UIColor.white.cgColor
         hollowTargetLayer.bounds = self.bounds
@@ -55,15 +55,15 @@ class CALayerView: UIView {
             x: self.bounds.width / 2.0,
             y: (UIScreen.main.bounds.height) / 2.0
         )
-        
+
         hollowTargetLayer.backgroundColor = UIColor.black.cgColor
         hollowTargetLayer.opacity = 0.7
-        
+
         maskLayer.bounds = hollowTargetLayer.bounds
-        
+
         path =  UIBezierPath.init(rect: vc.lineDashView.frame)
         path.append(UIBezierPath(rect: maskLayer.bounds))
-        
+
         maskLayer.fillColor = UIColor.black.cgColor
         maskLayer.path = path.cgPath
         maskLayer.position = CGPoint(
@@ -73,20 +73,20 @@ class CALayerView: UIView {
 
         maskLayer.fillRule = kCAFillRuleEvenOdd
         hollowTargetLayer.mask = maskLayer
-        
+
         //角のUI設定
         girdViewLeftTopWidth.backgroundColor = UIColor.white
         girdViewLeftTopWidth.frame = CGRect(x: vc.lineDashView.frame.origin.x, y: vc.lineDashView.frame.origin.y-wide, width: width, height: wide)
-        
+
         girdViewLeftUpRightHeight.backgroundColor = UIColor.white
         girdViewLeftUpRightHeight.frame = CGRect(x: vc.lineDashView.frame.origin.x-wide, y: vc.lineDashView.frame.origin.y-wide, width: wide, height: height)
 
         girdViewLeftDownWidth.backgroundColor = UIColor.white
         girdViewLeftDownWidth.frame = CGRect(x: vc.lineDashView.frame.origin.x, y: vc.lineDashView.frame.height+vc.lineDashView.frame.origin.y, width: width, height: wide)
-        
+
         girdViewLeftDownHeight.backgroundColor = UIColor.white
         girdViewLeftDownHeight.frame = CGRect(x: vc.lineDashView.frame.origin.x-wide, y: vc.lineDashView.frame.height+vc.lineDashView.frame.origin.y-width, width: wide, height: height)
-        
+
         girdViewRightUpWidth.backgroundColor = UIColor.white
         girdViewRightUpWidth.frame = CGRect(x: vc.lineDashView.frame.width + vc.lineDashView.frame.origin.x-width , y: vc.lineDashView.frame.origin.y-wide, width: width, height: wide)
 
@@ -107,11 +107,11 @@ class CALayerView: UIView {
         girdViewRightUpHeight.isHidden = bool
         girdViewRightDownWidth.isHidden = bool
         girdViewRightDownHeight.isHidden = bool
-        
+
     }
-    
+
     func effect(vc: ViewController,bool: Bool, boolSecound:Bool){
-        
+
         vc.lineDashView.layer.borderWidth = 1
         vc.lineDashView.layer.borderColor = UIColor.white.cgColor
 
@@ -123,10 +123,10 @@ class CALayerView: UIView {
         )
         // 四角いマスクレイヤーを作る
         maskLayer.bounds = hollowTargetLayer.bounds
-        
+
         path =  UIBezierPath.init(rect: vc.lineDashView.frame)
         path.append(UIBezierPath(rect: maskLayer.bounds))
-        
+
         maskLayer.path = path.cgPath
         maskLayer.position = CGPoint(
             x: hollowTargetLayer.bounds.width / 2.0,
@@ -136,18 +136,18 @@ class CALayerView: UIView {
         maskLayer.fillRule = kCAFillRuleEvenOdd
         //マスキング箇所の設定
         hollowTargetLayer.mask = maskLayer
-        
+
         let blurView = UIBlurEffect(style: .dark)
         let effectView = UIVisualEffectView(effect: blurView)
-        
+
         effectView.frame = hollowTargetLayer.frame
         effectView.layer.mask = maskLayer
 
         if boolSecound == false {
             vc.lineDashView.borderView.frame = vc.lineDashView.frame
             vc.view.addSubview(vc.lineDashView.borderView)
+            vc.view.addSubview(effectView)
         }
-        vc.view.addSubview(effectView)
         effectView.isHidden = bool
     }
 }
