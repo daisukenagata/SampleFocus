@@ -49,12 +49,10 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
 
     @objc func panTapped(sender:UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: view)
-        
         //画面をなぞる場合にフォーカスの設定
         DispatchQueue.main.async {
         self.cALayerView.effect(vc: self,bool: true, boolSecound: true)
         self.cALayerView.tori(vc: self, bool: false)
-        self.lineDashView.isHidden = false
         }
 
         switch sender.state {
