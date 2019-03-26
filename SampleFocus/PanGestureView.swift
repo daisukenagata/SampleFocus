@@ -47,10 +47,11 @@ final class PanGestureView: UIView, UIGestureRecognizerDelegate {
     @objc func panTapped(sender:UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: self)
         //指が離れた際の座標を取得
-        self.gestureObject.endPoint = self.lineDashView.frame.origin
-        self.gestureObject.endFrame = self.lineDashView.frame
-        self.cALayerView.tori(views: lineDashView)
-        
+        DispatchQueue.main.async {
+            self.gestureObject.endPoint = self.lineDashView.frame.origin
+            self.gestureObject.endFrame = self.lineDashView.frame
+            self.cALayerView.tori(views: self.lineDashView)
+        }
         switch sender.state {
         case .ended:
             break
