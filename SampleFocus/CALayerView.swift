@@ -71,7 +71,7 @@ class CALayerView: UIView {
             y: (hollowTargetLayer.bounds.height / 2.0)
         )
 
-        maskLayer.fillRule = kCAFillRuleEvenOdd
+        maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         hollowTargetLayer.mask = maskLayer
 
         //角のUI設定
@@ -133,7 +133,7 @@ class CALayerView: UIView {
             y: (hollowTargetLayer.bounds.height / 2.0)
         )
         // マスクのルールをeven/oddに設定する
-        maskLayer.fillRule = kCAFillRuleEvenOdd
+        maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         //マスキング箇所の設定
         hollowTargetLayer.mask = maskLayer
 
