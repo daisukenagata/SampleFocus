@@ -39,7 +39,7 @@ class CALayerLogic {
             y: (hollowTargetLayer.bounds.height / 2.0)
         )
 
-        maskLayer.fillRule = kCAFillRuleEvenOdd
+        maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
         hollowTargetLayer.mask = maskLayer
 
     }
