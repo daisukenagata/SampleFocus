@@ -239,7 +239,6 @@ class GestureObject: UIView {
                             views.lineDashView.frame.origin.x = centerX
             
                             views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
-                            views.cALayerView.effect(vc: views,bool: false, boolSecound: false)
                             views.lineDashView.isHidden = true
             })
         })
@@ -267,7 +266,6 @@ class GestureObject: UIView {
                             views.lineDashView.frame.origin.x = centerX
                             
                             views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
-                            views.cALayerView.effect(vc: views,bool: false, boolSecound: false)
                             views.lineDashView.isHidden = true
             })
         })
@@ -295,7 +293,6 @@ class GestureObject: UIView {
                             views.lineDashView.frame.origin.x = centerX
                             
                             views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
-                            views.cALayerView.effect(vc: views,bool: false, boolSecound: false)
                             views.lineDashView.isHidden = true
             })
         })
@@ -340,7 +337,6 @@ class GestureObject: UIView {
                             views.lineDashView.frame.origin.y = centerY
                             
                             views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
-                            views.cALayerView.effect(vc: views,bool: false, boolSecound: false)
                             views.lineDashView.isHidden = true
             })
         })

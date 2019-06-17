@@ -50,11 +50,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     @objc func panTapped(sender:UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: view)
         //画面をなぞる場合にフォーカスの設定
-        DispatchQueue.main.async {
         self.cALayerView.effect(vc: self,bool: true, boolSecound: true)
         self.cALayerView.tori(vc: self, bool: false)
-        }
-
         switch sender.state {
         case .ended:
             //指が離れた際の座標を取得
@@ -81,6 +78,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             break
         case .failed:
             break
+        @unknown default:
+            fatalError()
         }
     }
 
