@@ -1,4 +1,4 @@
-# SampleFocus Swift5.0 Xcode10.2
+# SampleFocus Swift5.0 Xcode11.2
 
 ![](https://github.com/daisukenagata/SampleFocus/blob/master/Focus.gif?raw=true)
 
