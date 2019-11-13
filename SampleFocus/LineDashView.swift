@@ -9,15 +9,14 @@
 import UIKit
 
 final class LineDashView: UIView {
-    
-    private var screenHeight = UIScreen.main.bounds.height - 15
-    private var screenWidth  = UIScreen.main.bounds.width
 
     lazy var openImageView: UIImageView = {
         let openImageView = UIImageView()
         return openImageView
     }()
 
+    private var screenHeight = UIScreen.main.bounds.height - 15
+    private var screenWidth  = UIScreen.main.bounds.width
     private var xWidth                        : CGFloat = 5
     private var yHeight                       : CGFloat = 5
     private var editing                       = Bool()
