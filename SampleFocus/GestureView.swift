@@ -12,7 +12,7 @@ final class GestureView: UIView, UIGestureRecognizerDelegate {
 
     private var gestureObject   = GestureObject()
     private var swipePanGesture = UIPanGestureRecognizer()
-    private let margin          : CGFloat = 15
+    private let margin          : CGFloat = 30
     private let animationTimer  : Double = 3.0
 
     init(_ frame: CGRect? = nil, imageSt: String? = nil) {

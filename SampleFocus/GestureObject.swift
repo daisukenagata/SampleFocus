@@ -198,7 +198,7 @@ final class GestureObject: NSObject {
         let kTOCropViewMinimumBoxSize = 44
         // フォーカスの最小枠と最大枠
         let minSize = CGSize(width: kTOCropViewMinimumBoxSize, height: kTOCropViewMinimumBoxSize)
-        let maxSize = CGSize(width: lineDashView.frame.maxX, height: lineDashView.frame.maxY)
+        let maxSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         lineDashView.frame.size.width  = max(lineDashView.frame.size.width, minSize.width)
         lineDashView.frame.size.height  = max(lineDashView.frame.size.height, minSize.height)
         
@@ -271,6 +271,8 @@ final class GestureObject: NSObject {
         
         cALayerView.hollowTargetLayer?.backgroundColor = UIColor.clear.cgColor
         lineDashView.isHidden = true
+        lineDashView.frame = lineDashView.openImageView.frame
+        lineDashView.frame.size.height -= UINavigationController.init().navigationBar.frame.height
         cALayerView.gridHideen(true)
     }
     
@@ -293,6 +295,8 @@ final class GestureObject: NSObject {
 
         cALayerView.hollowTargetLayer?.backgroundColor = UIColor.clear.cgColor
         lineDashView.isHidden = true
+        lineDashView.frame = lineDashView.openImageView.frame
+        lineDashView.frame.size.height -= UINavigationController.init().navigationBar.frame.height
         cALayerView.gridHideen(true)
-        }
+    }
 }
