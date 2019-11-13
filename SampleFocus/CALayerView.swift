@@ -110,6 +110,17 @@ class CALayerView: UIView {
 
     }
 
+    func gridHideen(_ bool: Bool) {
+        girdViewLeftTopWidth.isHidden = bool
+        girdViewLeftUpRightHeight.isHidden = bool
+        girdViewLeftDownWidth.isHidden = bool
+        girdViewLeftDownHeight.isHidden = bool
+        girdViewRightUpWidth.isHidden = bool
+        girdViewRightUpHeight.isHidden = bool
+        girdViewRightDownWidth.isHidden = bool
+        girdViewRightDownHeight.isHidden = bool
+    }
+
     func effect(vc: ViewController,bool: Bool, boolSecound:Bool){
 
         vc.lineDashView.layer.borderWidth = 1

@@ -74,4 +74,5 @@ class LineDashView: UIView {
         UIColor.white.setStroke()
         lineColor4.stroke()
     }
+
 }

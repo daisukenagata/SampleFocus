@@ -200,102 +200,26 @@ class GestureObject: UIView {
         let sizeSet = views.lineDashView.frame.size
         if (sizeSet.width / sizeSet.height) > 0.5 && 1.5 > (sizeSet.width / sizeSet.height)  {
             if views.lineDashView.frame.width < UIScreen.main.bounds.width/2 || views.lineDashView.frame.height < UIScreen.main.bounds.height/2{
-                matchSquareSmall(views: views, imageView: imageView)
+                matchSquareSmall(views: views)
             } else {
-                matchSquare(views: views, imageView: imageView)
+                matchSquare(views: views)
             }
         }else if (sizeSet.width / sizeSet.height) < 0.7 || 1.45 < (sizeSet.width / sizeSet.height)  {
             if views.lineDashView.frame.height > views.lineDashView.frame.width {
                 matchVertical(views: views, imageView: imageView)
             } else {
-                matchSide(views: views, imageView: imageView)
+                matchSide(views: views)
             }
         } else {
-            matchSquareSmall(views: views, imageView: imageView)
+            matchSquareSmall(views: views)
         }
-        views.cALayerView.tori(vc: views, bool: true)
     }
     
-    func matchSquare(views: ViewController,imageView: UIImageView){
-        UIView.animate(withDuration: TimeInterval(0),
-                       animations: {
-        }, completion: { _ in
-            UIView.animate(withDuration: 0,
-                           animations: {
-                            self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
-                            self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
-                            views.imageView.frame.size.height = views.imageView.frame.height*self.originY
-                            views.lineDashView.frame.size.height = views.lineDashView.frame.size.height * self.originY
-                            views.imageView.frame.size.width = views.imageView.frame.width * self.originX
-                            views.lineDashView.frame.size.width = views.lineDashView.openImageView.frame.size.width
-                            
-                            let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
-                            let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
-                            
-                            views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y*self.originY + views.imageView.frame.origin.y*self.originY + centerY
-                            views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x*self.originX + views.imageView.frame.origin.x*self.originX + centerX
-                            views.lineDashView.frame.origin.y = centerY
-                            views.lineDashView.frame.origin.x = centerX
-            
-                            views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
-                            views.lineDashView.isHidden = true
-            })
-        })
-    }
+    func matchSquare(views: ViewController){ originalScale(views: views) }
 
-    func matchSquareSmall(views: ViewController,imageView: UIImageView){
-        UIView.animate(withDuration: TimeInterval(0),
-                       animations: {
-        }, completion: { _ in
-            UIView.animate(withDuration: 0,
-                           animations: {
-                            self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
-                            self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
-                            views.imageView.frame.size.height = views.imageView.frame.height * self.originX
-                            views.lineDashView.frame.size.height = views.lineDashView.frame.size.height * self.originX
-                            views.imageView.frame.size.width = views.imageView.frame.width * self.originX
-                            views.lineDashView.frame.size.width = views.lineDashView.openImageView.frame.size.width
-                            
-                            let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
-                            let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
-                            
-                            views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y * self.originX + views.imageView.frame.origin.y * self.originX + centerY - 30
-                            views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x * self.originX + views.imageView.frame.origin.x * self.originX + centerX
-                            views.lineDashView.frame.origin.y = centerY - 30
-                            views.lineDashView.frame.origin.x = centerX
-                            
-                            views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
-                            views.lineDashView.isHidden = true
-            })
-        })
-    }
+    func matchSquareSmall(views: ViewController) { originalScale(views: views, centerOrigin: 30) }
 
-    func matchSide(views: ViewController,imageView: UIImageView){
-        UIView.animate(withDuration: TimeInterval(0),
-                       animations: {
-        }, completion: { _ in
-            UIView.animate(withDuration: 0,
-                           animations: {
-                            self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
-                            self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
-                            views.imageView.frame.size.width = views.imageView.frame.width * self.originX
-                            views.lineDashView.frame.size.width = views.lineDashView.openImageView.frame.size.width
-                            views.lineDashView.frame.size.height = views.lineDashView.frame.size.height * self.originX
-                            views.imageView.frame.size.height = views.imageView.frame.height * self.originX
-                            
-                            let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
-                            let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
-                            
-                            views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x*self.originX + views.imageView.frame.origin.x*self.originX + centerX
-                            views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y*self.originX + views.imageView.frame.origin.y*self.originX + centerY
-                            views.lineDashView.frame.origin.y = centerY
-                            views.lineDashView.frame.origin.x = centerX
-                            
-                            views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
-                            views.lineDashView.isHidden = true
-            })
-        })
-    }
+    func matchSide(views: ViewController) { originalScale(views: views) }
 
     func matchVertical(views: ViewController,imageView: UIImageView){
         UIView.animate(withDuration: TimeInterval(0),
@@ -340,4 +264,25 @@ class GestureObject: UIView {
             })
         })
     }
+    
+    func originalScale(views: ViewController, centerOrigin: CGFloat? = nil) {
+        self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
+        self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
+        views.imageView.frame.size.width = views.imageView.frame.width * self.originX
+        views.lineDashView.frame.size.width = views.lineDashView.openImageView.frame.size.width
+        views.lineDashView.frame.size.height = views.lineDashView.frame.size.height * self.originX
+        views.imageView.frame.size.height = views.imageView.frame.height * self.originX
+
+        let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
+        let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
+
+        views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x*self.originX + views.imageView.frame.origin.x*self.originX + centerX
+        views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y*self.originX + views.imageView.frame.origin.y*self.originX + centerY + (centerOrigin ?? CGFloat())
+        views.lineDashView.frame.origin.y = centerY + (centerOrigin ?? CGFloat())
+        views.lineDashView.frame.origin.x = centerX
+
+        views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
+        views.lineDashView.isHidden = true
+        views.cALayerView.gridHideen(true)
+        }
 }
