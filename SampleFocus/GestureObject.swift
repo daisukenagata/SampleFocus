@@ -270,7 +270,7 @@ final class GestureObject: NSObject {
         cALayerView.hollowTargetLayer?.backgroundColor = UIColor.clear.cgColor
         lineDashView.isHidden = true
         lineDashView.frame = lineDashView.openImageView.frame
-        lineDashView.frame.size.height -= UINavigationController.init().navigationBar.frame.height
+        lineDashView.frame.origin.y = UINavigationController.init().navigationBar.frame.height
         cALayerView.gridHideen(true)
     }
 
@@ -292,7 +292,7 @@ final class GestureObject: NSObject {
         cALayerView.hollowTargetLayer?.backgroundColor = UIColor.clear.cgColor
         lineDashView.isHidden = true
         lineDashView.frame = lineDashView.openImageView.frame
-        lineDashView.frame.size.height -= UINavigationController.init().navigationBar.frame.height
+        lineDashView.frame.origin.y = UINavigationController.init().navigationBar.frame.height
         cALayerView.gridHideen(true)
     }
 }
