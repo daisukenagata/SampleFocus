@@ -31,7 +31,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         gestureObject.imageView.frame = CGRect(x: 30, y: 30, width: view.frame.width - 60, height: view.frame.height - 30)
         view.addSubview(gestureObject.imageView)
         // レイヤーのマスキング
-        gestureObject.cALayerView.tori(gesture: gestureObject, bool: true)
+        gestureObject.cALayerView.tori(gestureObject, bool: true)
         
         view.layer.addSublayer(gestureObject.cALayerView.hollowTargetLayer)
         view.addSubview(gestureObject.cALayerView)
@@ -43,8 +43,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     @objc func panTapped(sender:UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: view)
         //画面をなぞる場合にフォーカスの設定
-        self.gestureObject.cALayerView.effect(gesture: gestureObject, bool: true, boolSecound: true)
-        self.gestureObject.cALayerView.tori(gesture: gestureObject, bool: false)
+        self.gestureObject.cALayerView.effect(gestureObject, bool: false)
+        self.gestureObject.cALayerView.tori(gestureObject, bool: false)
         switch sender.state {
         case .ended:
             //指が離れた際の座標を取得

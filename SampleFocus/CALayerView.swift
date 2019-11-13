@@ -39,13 +39,14 @@ class CALayerView: UIView {
         self.addSubview(girdViewRightUpHeight)
         self.addSubview(girdViewRightDownWidth)
         self.addSubview(girdViewRightDownHeight)
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-    func tori(gesture: GestureObject,bool: Bool){
+    func tori(_ gesture: GestureObject,bool: Bool){
 
         gesture.lineDashView.layer.borderWidth = 1
         gesture.lineDashView.layer.borderColor = UIColor.white.cgColor
@@ -121,7 +122,7 @@ class CALayerView: UIView {
         girdViewRightDownHeight.isHidden = bool
     }
 
-    func effect(gesture: GestureObject, bool: Bool, boolSecound:Bool){
+    func effect(_ gesture: GestureObject, bool: Bool){
 
         gesture.lineDashView.layer.borderWidth = 1
         gesture.lineDashView.layer.borderColor = UIColor.white.cgColor
@@ -153,12 +154,6 @@ class CALayerView: UIView {
 
         effectView.frame = hollowTargetLayer.frame
         effectView.layer.mask = maskLayer
-
-        if boolSecound == false {
-            gesture.lineDashView.borderView.frame = gesture.lineDashView.frame
-            gesture.lineDashView.openImageView.addSubview(gesture.lineDashView.borderView)
-            gesture.lineDashView.openImageView.addSubview(effectView)
-        }
         effectView.isHidden = bool
     }
 }
