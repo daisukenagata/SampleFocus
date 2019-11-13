@@ -271,6 +271,7 @@ final class GestureObject: NSObject {
         lineDashView.isHidden = true
         lineDashView.frame = lineDashView.openImageView.frame
         lineDashView.frame.origin.y = UINavigationController.init().navigationBar.frame.height
+        lineDashView.frame.size.height -= UINavigationController.init().navigationBar.frame.height
         cALayerView.gridHideen(true)
     }
 
@@ -293,6 +294,7 @@ final class GestureObject: NSObject {
         lineDashView.isHidden = true
         lineDashView.frame = lineDashView.openImageView.frame
         lineDashView.frame.origin.y = UINavigationController.init().navigationBar.frame.height
+        lineDashView.frame.size.height -= UINavigationController.init().navigationBar.frame.height
         cALayerView.gridHideen(true)
     }
 }
