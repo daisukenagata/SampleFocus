@@ -12,7 +12,7 @@ class CALayerView: UIView {
 
     var path =  UIBezierPath()
     let maskLayer = CAShapeLayer()
-    let hollowTargetLayer = CALayer()
+    var hollowTargetLayer: CALayer?
     let girdViewLeftTopWidth = UIView()
     let girdViewLeftUpRightHeight = UIView()
     let girdViewLeftDownWidth = UIView()
@@ -40,6 +40,7 @@ class CALayerView: UIView {
         self.addSubview(girdViewRightDownWidth)
         self.addSubview(girdViewRightDownHeight)
         
+        hollowTargetLayer = CALayer()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -48,7 +49,7 @@ class CALayerView: UIView {
 
     func tori(_ gesture: GestureObject,bool: Bool){
 
-        guard let lineDashView = gesture.lineDashView else { return }
+        guard let lineDashView = gesture.lineDashView, let hollowTargetLayer = hollowTargetLayer else { return }
 
         lineDashView.layer.borderWidth = 1
         lineDashView.layer.borderColor = UIColor.white.cgColor
@@ -125,6 +126,8 @@ class CALayerView: UIView {
     }
 
     func effect(_ gesture: GestureObject, bool: Bool){
+
+        guard let hollowTargetLayer = hollowTargetLayer else { return }
 
         guard let lineDashView = gesture.lineDashView else { return }
         gesture.lineDashView?.layer.borderWidth = 1

@@ -270,7 +270,7 @@ class GestureObject: UIView {
         lineDashView.frame.origin.x = centerX
         lineDashView.frame.origin.y = centerY
         
-        cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
+        cALayerView.hollowTargetLayer?.backgroundColor = UIColor.clear.cgColor
         lineDashView.isHidden = true
         cALayerView.gridHideen(true)
     }
@@ -292,7 +292,7 @@ class GestureObject: UIView {
         lineDashView.frame.origin.y = centerY + (centerOrigin ?? CGFloat())
         lineDashView.frame.origin.x = centerX
 
-        cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
+        cALayerView.hollowTargetLayer?.backgroundColor = UIColor.clear.cgColor
         lineDashView.isHidden = true
         cALayerView.gridHideen(true)
         }
