@@ -15,17 +15,17 @@ class CALayerView: UIView {
     private var path     :  UIBezierPath?
     private var maskLayer: CAShapeLayer?
 
-    private let girdViewLeftTopWidth = UIView()
+    private let girdViewLeftTopWidth      = UIView()
     private let girdViewLeftUpRightHeight = UIView()
-    private let girdViewLeftDownWidth = UIView()
-    private let girdViewLeftDownHeight = UIView()
-    private  let girdViewRightUpWidth = UIView()
-    private let girdViewRightUpHeight = UIView()
-    private let girdViewRightDownWidth = UIView()
-    private let girdViewRightDownHeight = UIView()
-    private let width: CGFloat = 20
+    private let girdViewLeftDownWidth     = UIView()
+    private let girdViewLeftDownHeight    = UIView()
+    private let girdViewRightUpWidth      = UIView()
+    private let girdViewRightUpHeight     = UIView()
+    private let girdViewRightDownWidth    = UIView()
+    private let girdViewRightDownHeight   = UIView()
+    private let width : CGFloat = 20
     private let height: CGFloat = 22
-    private let wide: CGFloat = 2
+    private let wide  : CGFloat = 2
 
 
     override init(frame: CGRect) {
