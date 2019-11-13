@@ -266,8 +266,6 @@ final class GestureObject: NSObject {
 
         imageView.frame.origin.x = -lineDashView.frame.origin.x*self.originX/self.magnification + imageView.frame.origin.x*self.originX/self.magnification + centerX
         imageView.frame.origin.y = -lineDashView.frame.origin.y*self.originX/self.magnification + imageView.frame.origin.y*self.originX/self.magnification + centerY
-        lineDashView.frame.origin.x = centerX
-        lineDashView.frame.origin.y = centerY
 
         cALayerView.hollowTargetLayer?.backgroundColor = UIColor.clear.cgColor
         lineDashView.isHidden = true
@@ -290,8 +288,6 @@ final class GestureObject: NSObject {
 
         imageView.frame.origin.x = -lineDashView.frame.origin.x*self.originX + imageView.frame.origin.x*self.originX + centerX
         imageView.frame.origin.y = -lineDashView.frame.origin.y*self.originX + imageView.frame.origin.y*self.originX + centerY + (centerOrigin ?? CGFloat())
-        lineDashView.frame.origin.y = centerY + (centerOrigin ?? CGFloat())
-        lineDashView.frame.origin.x = centerX
 
         cALayerView.hollowTargetLayer?.backgroundColor = UIColor.clear.cgColor
         lineDashView.isHidden = true
