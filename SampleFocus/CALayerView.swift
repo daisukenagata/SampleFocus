@@ -48,8 +48,10 @@ class CALayerView: UIView {
 
     func tori(_ gesture: GestureObject,bool: Bool){
 
-        gesture.lineDashView.layer.borderWidth = 1
-        gesture.lineDashView.layer.borderColor = UIColor.white.cgColor
+        guard let lineDashView = gesture.lineDashView else { return }
+
+        lineDashView.layer.borderWidth = 1
+        lineDashView.layer.borderColor = UIColor.white.cgColor
         hollowTargetLayer.bounds = self.bounds
         hollowTargetLayer.frame.size.height = UIScreen.main.bounds.height
         hollowTargetLayer.position = CGPoint(
@@ -62,7 +64,7 @@ class CALayerView: UIView {
 
         maskLayer.bounds = hollowTargetLayer.bounds
 
-        path =  UIBezierPath.init(rect: gesture.lineDashView.frame)
+        path =  UIBezierPath.init(rect: gesture.lineDashView?.frame ?? CGRect())
         path.append(UIBezierPath(rect: maskLayer.bounds))
 
         maskLayer.fillColor = UIColor.black.cgColor
@@ -77,28 +79,28 @@ class CALayerView: UIView {
 
         //角のUI設定
         girdViewLeftTopWidth.backgroundColor = UIColor.white
-        girdViewLeftTopWidth.frame = CGRect(x: gesture.lineDashView.frame.origin.x, y: gesture.lineDashView.frame.origin.y-wide, width: width, height: wide)
+        girdViewLeftTopWidth.frame = CGRect(x: lineDashView.frame.origin.x, y: lineDashView.frame.origin.y-wide, width: width, height: wide)
 
         girdViewLeftUpRightHeight.backgroundColor = UIColor.white
-        girdViewLeftUpRightHeight.frame = CGRect(x: gesture.lineDashView.frame.origin.x-wide, y: gesture.lineDashView.frame.origin.y-wide, width: wide, height: height)
+        girdViewLeftUpRightHeight.frame = CGRect(x: lineDashView.frame.origin.x-wide, y: lineDashView.frame.origin.y-wide, width: wide, height: height)
 
         girdViewLeftDownWidth.backgroundColor = UIColor.white
-        girdViewLeftDownWidth.frame = CGRect(x: gesture.lineDashView.frame.origin.x, y: gesture.lineDashView.frame.height+gesture.lineDashView.frame.origin.y, width: width, height: wide)
+        girdViewLeftDownWidth.frame = CGRect(x: lineDashView.frame.origin.x, y: lineDashView.frame.height+lineDashView.frame.origin.y, width: width, height: wide)
 
         girdViewLeftDownHeight.backgroundColor = UIColor.white
-        girdViewLeftDownHeight.frame = CGRect(x: gesture.lineDashView.frame.origin.x-wide, y: gesture.lineDashView.frame.height+gesture.lineDashView.frame.origin.y-width, width: wide, height: height)
+        girdViewLeftDownHeight.frame = CGRect(x: lineDashView.frame.origin.x-wide, y: lineDashView.frame.height+lineDashView.frame.origin.y-width, width: wide, height: height)
 
         girdViewRightUpWidth.backgroundColor = UIColor.white
-        girdViewRightUpWidth.frame = CGRect(x: gesture.lineDashView.frame.width + gesture.lineDashView.frame.origin.x-width , y: gesture.lineDashView.frame.origin.y-wide, width: width, height: wide)
+        girdViewRightUpWidth.frame = CGRect(x: lineDashView.frame.width + lineDashView.frame.origin.x-width , y: lineDashView.frame.origin.y-wide, width: width, height: wide)
 
         girdViewRightUpHeight.backgroundColor = UIColor.white
-        girdViewRightUpHeight.frame = CGRect(x: gesture.lineDashView.frame.width + gesture.lineDashView.frame.origin.x, y: gesture.lineDashView.frame.origin.y-wide, width: wide, height: height)
+        girdViewRightUpHeight.frame = CGRect(x: lineDashView.frame.width + lineDashView.frame.origin.x, y: lineDashView.frame.origin.y-wide, width: wide, height: height)
 
         girdViewRightDownWidth.backgroundColor = UIColor.white
-        girdViewRightDownWidth.frame = CGRect(x: gesture.lineDashView.frame.width + gesture.lineDashView.frame.origin.x-width, y: gesture.lineDashView.frame.height+gesture.lineDashView.frame.origin.y, width: width, height: wide)
+        girdViewRightDownWidth.frame = CGRect(x: lineDashView.frame.width + lineDashView.frame.origin.x-width, y: lineDashView.frame.height+lineDashView.frame.origin.y, width: width, height: wide)
 
         girdViewRightDownHeight.backgroundColor = UIColor.white
-        girdViewRightDownHeight.frame = CGRect(x: gesture.lineDashView.frame.width + gesture.lineDashView.frame.origin.x, y: gesture.lineDashView.frame.height+gesture.lineDashView.frame.origin.y-width, width: wide, height: height)
+        girdViewRightDownHeight.frame = CGRect(x: lineDashView.frame.width + lineDashView.frame.origin.x, y: lineDashView.frame.height+lineDashView.frame.origin.y-width, width: wide, height: height)
  
         girdViewLeftTopWidth.isHidden = bool
         girdViewLeftUpRightHeight.isHidden = bool
@@ -124,8 +126,9 @@ class CALayerView: UIView {
 
     func effect(_ gesture: GestureObject, bool: Bool){
 
-        gesture.lineDashView.layer.borderWidth = 1
-        gesture.lineDashView.layer.borderColor = UIColor.white.cgColor
+        guard let lineDashView = gesture.lineDashView else { return }
+        gesture.lineDashView?.layer.borderWidth = 1
+        gesture.lineDashView?.layer.borderColor = UIColor.white.cgColor
 
         hollowTargetLayer.bounds = self.bounds
         hollowTargetLayer.frame.size.height = UIScreen.main.bounds.height
@@ -136,7 +139,7 @@ class CALayerView: UIView {
         // 四角いマスクレイヤーを作る
         maskLayer.bounds = hollowTargetLayer.bounds
 
-        path =  UIBezierPath.init(rect: gesture.lineDashView.frame)
+        path =  UIBezierPath.init(rect: lineDashView.frame)
         path.append(UIBezierPath(rect: maskLayer.bounds))
 
         maskLayer.path = path.cgPath

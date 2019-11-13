@@ -29,17 +29,29 @@ class GestureObject: UIView {
     var originX = CGFloat()
     var magnification: CGFloat = 2
     
-    var timer = Timer()
-    var timerFlag = Bool()
-    var imageView = UIImageView()
-    var cALayerView = CALayerView()
-    var lineDashView = LineDashView()
-    var touchFlag = TouchFlag.touchBottomRight
+    var timer       = Timer()
+    var timerFlag   = Bool()
+    var touchFlag   = TouchFlag.touchBottomRight
+
+    var imageView   : UIImageView?
+    var cALayerView : CALayerView?
+    var lineDashView: LineDashView?
+    
+    init(){
+        super.init(frame: .zero)
+        imageView    = UIImageView()
+        cALayerView  = CALayerView()
+        lineDashView = LineDashView()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
 
     func cropEdgeForPoint(point: CGPoint) -> TouchFlag {
         //タップした領域を取得
-        let frame = lineDashView.frame
+        guard let frame = lineDashView?.frame else { return .touchNone}
         var topLeftRect: CGRect = frame
         topLeftRect.size.height = CGFloat(64)
         topLeftRect.size.width = CGFloat(64)
@@ -92,8 +104,8 @@ class GestureObject: UIView {
         return TouchFlag.touchNone
     }
     //タップされた領域からMaskするViewのサイズ、座標計算
-    func updatePoint(point: CGPoint, views: ViewController, touchFlag: TouchFlag)  {
-
+    func updatePoint(point: CGPoint, touchFlag: TouchFlag)  {
+        guard let lineDashView = lineDashView, let imageView = imageView else { return }
         switch touchFlag {
         case .touchNone:break
         case .touchSideRight:
@@ -203,7 +215,8 @@ class GestureObject: UIView {
     }
 
     //フォーカスの形により座標、サイズの設定のメソッド呼び出し
-    func matchGround(imageView: UIImageView) {
+    func matchGround() {
+        guard let lineDashView = lineDashView else { return }
         let sizeSet = lineDashView.frame.size
         
         guard (sizeSet.width / sizeSet.height) < 0.5 && 1.5 < (sizeSet.width / sizeSet.height) else {
@@ -224,6 +237,7 @@ class GestureObject: UIView {
     
 
     func matchVertical(){
+        guard let lineDashView = lineDashView, let imageView = imageView, let cALayerView = cALayerView else { return }
         if lineDashView.frame.size.width < lineDashView.openImageView.frame.width/5 {
             self.magnification = 6.5
         } else if lineDashView.frame.size.width < lineDashView.openImageView.frame.width/4 {
@@ -262,6 +276,7 @@ class GestureObject: UIView {
     }
     
     func originalScale(centerOrigin: CGFloat? = nil) {
+        guard let lineDashView = lineDashView, let imageView = imageView, let cALayerView = cALayerView else { return }
         self.originY = lineDashView.openImageView.frame.height/lineDashView.frame.size.height
         self.originX = lineDashView.openImageView.frame.width/lineDashView.frame.size.width
         imageView.frame.size.width = imageView.frame.width * self.originX

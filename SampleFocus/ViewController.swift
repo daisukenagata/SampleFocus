@@ -26,30 +26,30 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         view.addGestureRecognizer( CommonStructure.swipePanGesture)
         view.backgroundColor = .blue
         
-        gestureObject.imageView.image = UIImage(named: "Mac")
-        gestureObject.imageView.contentMode = .scaleAspectFit
-        gestureObject.imageView.frame = CGRect(x: 30, y: 30, width: view.frame.width - 60, height: view.frame.height - 30)
-        view.addSubview(gestureObject.imageView)
+        gestureObject.imageView?.image = UIImage(named: "Mac")
+        gestureObject.imageView?.contentMode = .scaleAspectFit
+        gestureObject.imageView?.frame = CGRect(x: 30, y: 30, width: view.frame.width - 60, height: view.frame.height - 30)
+        view.addSubview(gestureObject.imageView ?? UIImageView())
         // レイヤーのマスキング
-        gestureObject.cALayerView.tori(gestureObject, bool: true)
+        gestureObject.cALayerView?.tori(gestureObject, bool: true)
         
-        view.layer.addSublayer(gestureObject.cALayerView.hollowTargetLayer)
-        view.addSubview(gestureObject.cALayerView)
+        view.layer.addSublayer(gestureObject.cALayerView?.hollowTargetLayer ?? CALayer())
+        view.addSubview(gestureObject.cALayerView ?? UIView())
         
-        view.addSubview(gestureObject.lineDashView)
-        gestureObject.lineDashView.isHidden = true
+        view.addSubview(gestureObject.lineDashView ?? UIView())
+        gestureObject.lineDashView?.isHidden = true
     }
 
     @objc func panTapped(sender:UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: view)
         //画面をなぞる場合にフォーカスの設定
-        self.gestureObject.cALayerView.effect(gestureObject, bool: false)
-        self.gestureObject.cALayerView.tori(gestureObject, bool: false)
+        self.gestureObject.cALayerView?.effect(gestureObject, bool: false)
+        self.gestureObject.cALayerView?.tori(gestureObject, bool: false)
         switch sender.state {
         case .ended:
             //指が離れた際の座標を取得
-            gestureObject.endPoint = gestureObject.lineDashView.frame.origin
-            gestureObject.endFrame = gestureObject.lineDashView.frame
+            gestureObject.endPoint = gestureObject.lineDashView?.frame.origin ?? CGPoint()
+            gestureObject.endFrame = gestureObject.lineDashView?.frame ?? CGRect()
             //フォーカス計算のメソッド呼び出し
             gestureObject.timerFlag = false
             timerSetting()
@@ -57,7 +57,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         case .possible:
             break
         case .began:
-            gestureObject.lineDashView.isHidden = false
+            gestureObject.lineDashView?.isHidden = false
             gestureObject.timerFlag = true
             gestureObject.timer.invalidate()
             //タップした領域を取得
@@ -65,7 +65,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             break
         case .changed:
              //タップされた領域からMaskするViewのサイズ、座標計算
-            self.gestureObject.updatePoint(point: position,views: self,touchFlag: self.gestureObject.touchFlag)
+            self.gestureObject.updatePoint(point: position,touchFlag: self.gestureObject.touchFlag)
             break
         case .cancelled:
             break
@@ -92,7 +92,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
 
     @objc func animetionSet() {
         if gestureObject.timerFlag == false {
-            gestureObject.matchGround(imageView: gestureObject.imageView)
+            gestureObject.matchGround()
             gestureObject.timerFlag = true
             gestureObject.timer.invalidate()
         }
