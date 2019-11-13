@@ -8,15 +8,10 @@
 
 import UIKit
 
-struct CommonStructure {
-    // ジャスチャー
-    static var swipePanGesture = UIPanGestureRecognizer()
-}
-
-
 final class GestureView: UIView, UIGestureRecognizerDelegate {
 
     var gestureObject = GestureObject()
+    var swipePanGesture = UIPanGestureRecognizer()
 
     init(_ frame: CGRect? = nil, imageSt: String? = nil) {
         super.init(frame: frame ?? CGRect())
@@ -30,10 +25,10 @@ final class GestureView: UIView, UIGestureRecognizerDelegate {
     
     private func initSetting(imageSt: String) {
         // ジャスチャー
-        CommonStructure.swipePanGesture = UIPanGestureRecognizer(target: self, action:#selector(panTapped))
-        CommonStructure.swipePanGesture.delegate = self
+        swipePanGesture = UIPanGestureRecognizer(target: self, action:#selector(panTapped))
+        swipePanGesture.delegate = self
 
-        self.addGestureRecognizer( CommonStructure.swipePanGesture)
+        self.addGestureRecognizer( swipePanGesture)
         self.backgroundColor = .blue
 
         gestureObject.imageView?.image = UIImage(named: imageSt)
