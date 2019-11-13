@@ -198,21 +198,21 @@ class GestureObject: UIView {
     //フォーカスの形により座標、サイズの設定のメソッド呼び出し
     func matchGround(views: ViewController,imageView: UIImageView) {
         let sizeSet = views.lineDashView.frame.size
-        if (sizeSet.width / sizeSet.height) > 0.5 && 1.5 > (sizeSet.width / sizeSet.height)  {
-            if views.lineDashView.frame.width < UIScreen.main.bounds.width/2 || views.lineDashView.frame.height < UIScreen.main.bounds.height/2{
-                originalScale(views: views)
-            } else {
-                originalScale(views: views)
-            }
-        }else if (sizeSet.width / sizeSet.height) < 0.7 || 1.45 < (sizeSet.width / sizeSet.height)  {
+        
+        guard (sizeSet.width / sizeSet.height) < 0.5 && 1.5 < (sizeSet.width / sizeSet.height) else {
+            originalScale(views: views)
+            return
+        }
+
+        guard (sizeSet.width / sizeSet.height) > 0.7 || 1.45 > (sizeSet.width / sizeSet.height) else {
             if views.lineDashView.frame.height > views.lineDashView.frame.width {
                 matchVertical(views: views, imageView: imageView)
             } else {
                 originalScale(views: views)
             }
-        } else {
-            originalScale(views: views, centerOrigin: 30)
+            return
         }
+         originalScale(views: views, centerOrigin: 30)
     }
     
 
