@@ -28,11 +28,18 @@ class GestureObject: UIView {
     var originY = CGFloat()
     var originX = CGFloat()
     var magnification: CGFloat = 2
+    
+    var timer = Timer()
+    var timerFlag = Bool()
+    var imageView = UIImageView()
+    var cALayerView = CALayerView()
+    var lineDashView = LineDashView()
+    var touchFlag = TouchFlag.touchBottomRight
 
 
-    func cropEdgeForPoint(point: CGPoint, views: ViewController) -> TouchFlag {
+    func cropEdgeForPoint(point: CGPoint) -> TouchFlag {
         //タップした領域を取得
-        let frame = views.lineDashView.frame
+        let frame = lineDashView.frame
         var topLeftRect: CGRect = frame
         topLeftRect.size.height = CGFloat(64)
         topLeftRect.size.width = CGFloat(64)
@@ -91,194 +98,187 @@ class GestureObject: UIView {
         case .touchNone:break
         case .touchSideRight:
             if endPoint.y != 0 {
-                views.lineDashView.frame.origin.x = point.x
-                views.lineDashView.frame.size.width = -point.x + endFrame.minX
+                lineDashView.frame.origin.x = point.x
+                lineDashView.frame.size.width = -point.x + endFrame.minX
             } else {
-                views.lineDashView.frame.origin.x = point.x
-                views.lineDashView.frame.size.width = -point.x
+                lineDashView.frame.origin.x = point.x
+                lineDashView.frame.size.width = -point.x
             }
             break
         case .touchBottomRight:
             if endPoint.y != 0 {
-                views.lineDashView.frame.origin.x = point.x
-                views.lineDashView.frame.size.width = -point.x + endFrame.minX
-                views.lineDashView.frame.size.height =  -point.y + endPoint.y
-                views.lineDashView.frame.origin.y = endPoint.y
+                lineDashView.frame.origin.x = point.x
+                lineDashView.frame.size.width = -point.x + endFrame.minX
+                lineDashView.frame.size.height =  -point.y + endPoint.y
+                lineDashView.frame.origin.y = endPoint.y
             } else {
-                views.lineDashView.frame.origin.x = point.x
-                views.lineDashView.frame.size.width = -point.x
-                views.lineDashView.frame.origin.y =  point.y
-                views.lineDashView.frame.size.height = -(point.y - 60)
+                lineDashView.frame.origin.x = point.x
+                lineDashView.frame.size.width = -point.x
+                lineDashView.frame.origin.y =  point.y
+                lineDashView.frame.size.height = -(point.y - 60)
             }
             break
         case .touchBottomLeft:
             if endPoint.y != 0 {
-                views.lineDashView.frame.origin.x = point.x
-                views.lineDashView.frame.size.width = -point.x + endFrame.maxX
-                views.lineDashView.frame.size.height =  -point.y + endPoint.y
-                views.lineDashView.frame.origin.y = endPoint.y
+                lineDashView.frame.origin.x = point.x
+                lineDashView.frame.size.width = -point.x + endFrame.maxX
+                lineDashView.frame.size.height =  -point.y + endPoint.y
+                lineDashView.frame.origin.y = endPoint.y
             } else {
-                views.lineDashView.frame.origin.x =  point.x
-                views.lineDashView.frame.size.width =  -point.x + views.imageView.frame.width
-                views.lineDashView.frame.origin.y = point.y
-                views.lineDashView.frame.size.height = -(point.y - 60)
+                lineDashView.frame.origin.x =  point.x
+                lineDashView.frame.size.width =  -point.x + imageView.frame.width
+                lineDashView.frame.origin.y = point.y
+                lineDashView.frame.size.height = -(point.y - 60)
             }
             break
         case .touchTop:
             if endPoint.y != 0 {
-                views.lineDashView.frame.origin.y = point.y
-                views.lineDashView.frame.size.height =  -point.y + endFrame.maxY
+                lineDashView.frame.origin.y = point.y
+                lineDashView.frame.size.height =  -point.y + endFrame.maxY
             } else {
-                views.lineDashView.frame.origin.y = point.y
-                views.lineDashView.frame.size.height = -point.y + views.lineDashView.screenWidth + 60
+                lineDashView.frame.origin.y = point.y
+                lineDashView.frame.size.height = -point.y + lineDashView.screenWidth + 60
             }
             break
         case .touchDown:
             if endPoint.y != 0 {
-                views.lineDashView.frame.size.height =  -point.y + endPoint.y
-                views.lineDashView.frame.origin.y = endPoint.y
+                lineDashView.frame.size.height =  -point.y + endPoint.y
+                lineDashView.frame.origin.y = endPoint.y
             } else {
-                views.lineDashView.frame.origin.y = point.y
-                views.lineDashView.frame.size.height = -(point.y - 60)
+                lineDashView.frame.origin.y = point.y
+                lineDashView.frame.size.height = -(point.y - 60)
             }
             break
         case .touchSideLeft:
             if endPoint.y != 0 {
-                views.lineDashView.frame.origin.x = point.x
-                views.lineDashView.frame.size.width = -point.x + endFrame.maxX
+                lineDashView.frame.origin.x = point.x
+                lineDashView.frame.size.width = -point.x + endFrame.maxX
             } else {
-                views.lineDashView.frame.origin.x =  point.x
-                views.lineDashView.frame.size.width =  -point.x + views.imageView.frame.width
+                lineDashView.frame.origin.x =  point.x
+                lineDashView.frame.size.width =  -point.x + imageView.frame.width
             }
             break
         case .touchTopRight:
             if endPoint.y != 0 {
-                views.lineDashView.frame.origin.x = point.x
-                views.lineDashView.frame.size.width = -point.x + endFrame.minX
-                views.lineDashView.frame.origin.y = point.y
-                views.lineDashView.frame.size.height =  -point.y + endFrame.maxY
+                lineDashView.frame.origin.x = point.x
+                lineDashView.frame.size.width = -point.x + endFrame.minX
+                lineDashView.frame.origin.y = point.y
+                lineDashView.frame.size.height =  -point.y + endFrame.maxY
             } else {
-                views.lineDashView.frame.origin.x = point.x
-                views.lineDashView.frame.size.width = -point.x
-                views.lineDashView.frame.origin.y = point.y
-                views.lineDashView.frame.size.height = -point.y + views.lineDashView.screenWidth + 60
+                lineDashView.frame.origin.x = point.x
+                lineDashView.frame.size.width = -point.x
+                lineDashView.frame.origin.y = point.y
+                lineDashView.frame.size.height = -point.y + lineDashView.screenWidth + 60
             }
         case .touchTopLeft:
             if endPoint.y != 0 {
-                views.lineDashView.frame.origin.x = point.x
-                views.lineDashView.frame.size.width = -point.x + endFrame.maxX
-                views.lineDashView.frame.origin.y = point.y
-                views.lineDashView.frame.size.height =  -point.y + endFrame.maxY
+                lineDashView.frame.origin.x = point.x
+                lineDashView.frame.size.width = -point.x + endFrame.maxX
+                lineDashView.frame.origin.y = point.y
+                lineDashView.frame.size.height =  -point.y + endFrame.maxY
             } else {
-                views.lineDashView.frame.origin.x =  point.x
-                views.lineDashView.frame.size.width =  -point.x + views.imageView.frame.width
-                views.lineDashView.frame.origin.y = point.y
-                views.lineDashView.frame.size.height = -point.y + views.lineDashView.screenWidth + 60
+                lineDashView.frame.origin.x =  point.x
+                lineDashView.frame.size.width =  -point.x + imageView.frame.width
+                lineDashView.frame.origin.y = point.y
+                lineDashView.frame.size.height = -point.y + lineDashView.screenWidth + 60
                 break
             }
         }
         let kTOCropViewMinimumBoxSize = 44
         // フォーカスの最小枠と最大枠
         let minSize = CGSize(width: kTOCropViewMinimumBoxSize, height: kTOCropViewMinimumBoxSize)
-        let maxSize = CGSize(width: views.lineDashView.frame.maxX, height: views.lineDashView.frame.maxY)
-        views.lineDashView.frame.size.width  = max(views.lineDashView.frame.size.width, minSize.width)
-        views.lineDashView.frame.size.height  = max(views.lineDashView.frame.size.height, minSize.height)
+        let maxSize = CGSize(width: lineDashView.frame.maxX, height: lineDashView.frame.maxY)
+        lineDashView.frame.size.width  = max(lineDashView.frame.size.width, minSize.width)
+        lineDashView.frame.size.height  = max(lineDashView.frame.size.height, minSize.height)
         
-        views.lineDashView.frame.size.width  = min(views.lineDashView.frame.size.width, maxSize.width)
-        views.lineDashView.frame.size.height  = min(views.lineDashView.frame.size.height, maxSize.height)
+        lineDashView.frame.size.width  = min(lineDashView.frame.size.width, maxSize.width)
+        lineDashView.frame.size.height  = min(lineDashView.frame.size.height, maxSize.height)
         
-        views.lineDashView.frame.origin.x  = max(views.lineDashView.frame.origin.x, views.lineDashView.frame.minX)
-        views.lineDashView.frame.origin.x = min(views.lineDashView.frame.origin.x, views.lineDashView.frame.maxX - minSize.width)
+        lineDashView.frame.origin.x  = max(lineDashView.frame.origin.x, lineDashView.frame.minX)
+        lineDashView.frame.origin.x = min(lineDashView.frame.origin.x, lineDashView.frame.maxX - minSize.width)
         
-        views.lineDashView.frame.origin.y  = max(views.lineDashView.frame.origin.y, views.lineDashView.frame.minY)
-        views.lineDashView.frame.origin.y  = min(views.lineDashView.frame.origin.y, views.lineDashView.frame.maxY - minSize.height)
+        lineDashView.frame.origin.y  = max(lineDashView.frame.origin.y, lineDashView.frame.minY)
+        lineDashView.frame.origin.y  = min(lineDashView.frame.origin.y, lineDashView.frame.maxY - minSize.height)
         
     }
 
     //フォーカスの形により座標、サイズの設定のメソッド呼び出し
-    func matchGround(views: ViewController,imageView: UIImageView) {
-        let sizeSet = views.lineDashView.frame.size
+    func matchGround(imageView: UIImageView) {
+        let sizeSet = lineDashView.frame.size
         
         guard (sizeSet.width / sizeSet.height) < 0.5 && 1.5 < (sizeSet.width / sizeSet.height) else {
-            originalScale(views: views)
+            originalScale()
             return
         }
 
         guard (sizeSet.width / sizeSet.height) > 0.7 || 1.45 > (sizeSet.width / sizeSet.height) else {
-            if views.lineDashView.frame.height > views.lineDashView.frame.width {
-                matchVertical(views: views, imageView: imageView)
+            if lineDashView.frame.height > lineDashView.frame.width {
+                matchVertical()
             } else {
-                originalScale(views: views)
+                originalScale()
             }
             return
         }
-         originalScale(views: views, centerOrigin: 30)
+         originalScale(centerOrigin: 30)
     }
     
 
-    func matchVertical(views: ViewController,imageView: UIImageView){
-        UIView.animate(withDuration: TimeInterval(0),
-                       animations: {
-        }, completion: { _ in
-            UIView.animate(withDuration: 0,
-                           animations: {
-                            if views.lineDashView.frame.size.width < views.lineDashView.openImageView.frame.width/5 {
-                                self.magnification = 6.5
-                            } else if views.lineDashView.frame.size.width < views.lineDashView.openImageView.frame.width/4 {
-                                self.magnification = 3.5
-                            }else if views.lineDashView.frame.size.width < views.lineDashView.openImageView.frame.width/3 {
-                                self.magnification = 3
-                            } else if views.lineDashView.frame.size.width < views.lineDashView.openImageView.frame.width/2 {
-                                self.magnification = 2
-                            } else if views.imageView.frame.size.width > views.view.frame.width {
-                                self.magnification = 2.5
-                            } else {
-                                self.originY = 1.0
-                                self.originX = 1.0
-                                self.magnification = 1.0
-                            }
-                            self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
-                            self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
-                            
-                            views.imageView.frame.size.width = views.imageView.frame.width * self.originX/self.magnification
-                            views.imageView.frame.size.height = views.imageView.frame.height * self.originX/self.self.magnification
-                            
-                            views.lineDashView.frame.size.width = views.lineDashView.frame.size.width * self.originX/self.magnification
-                            views.lineDashView.frame.size.height = views.lineDashView.frame.height * self.originX/self.magnification
-                            
-                            let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
-                            let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
-                            
-                            views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x*self.originX/self.magnification + views.imageView.frame.origin.x*self.originX/self.magnification + centerX
-                            views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y*self.originX/self.magnification + views.imageView.frame.origin.y*self.originX/self.magnification + centerY
-                            views.lineDashView.frame.origin.x = centerX
-                            views.lineDashView.frame.origin.y = centerY
-                            
-                            views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
-                            views.lineDashView.isHidden = true
-                            views.cALayerView.gridHideen(true)
-            })
-        })
+    func matchVertical(){
+        if lineDashView.frame.size.width < lineDashView.openImageView.frame.width/5 {
+            self.magnification = 6.5
+        } else if lineDashView.frame.size.width < lineDashView.openImageView.frame.width/4 {
+            self.magnification = 3.5
+        }else if lineDashView.frame.size.width < lineDashView.openImageView.frame.width/3 {
+            self.magnification = 3
+        } else if lineDashView.frame.size.width < lineDashView.openImageView.frame.width/2 {
+            self.magnification = 2
+        } else if imageView.frame.size.width > lineDashView.openImageView.frame.width {
+            self.magnification = 2.5
+        } else {
+            self.originY = 1.0
+            self.originX = 1.0
+            self.magnification = 1.0
+        }
+        self.originY = lineDashView.openImageView.frame.height/lineDashView.frame.size.height
+        self.originX = lineDashView.openImageView.frame.width/lineDashView.frame.size.width
+        
+        imageView.frame.size.width = imageView.frame.width * self.originX/self.magnification
+        imageView.frame.size.height = imageView.frame.height * self.originX/self.self.magnification
+        
+        lineDashView.frame.size.width = lineDashView.frame.size.width * self.originX/self.magnification
+        lineDashView.frame.size.height = lineDashView.frame.height * self.originX/self.magnification
+        
+        let centerY = lineDashView.openImageView.frame.size.height/2 - lineDashView.frame.size.height/2
+        let centerX = lineDashView.openImageView.frame.size.width/2 - lineDashView.frame.size.width/2
+        
+        imageView.frame.origin.x = -lineDashView.frame.origin.x*self.originX/self.magnification + imageView.frame.origin.x*self.originX/self.magnification + centerX
+        imageView.frame.origin.y = -lineDashView.frame.origin.y*self.originX/self.magnification + imageView.frame.origin.y*self.originX/self.magnification + centerY
+        lineDashView.frame.origin.x = centerX
+        lineDashView.frame.origin.y = centerY
+        
+        cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
+        lineDashView.isHidden = true
+        cALayerView.gridHideen(true)
     }
     
-    func originalScale(views: ViewController, centerOrigin: CGFloat? = nil) {
-        self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
-        self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
-        views.imageView.frame.size.width = views.imageView.frame.width * self.originX
-        views.lineDashView.frame.size.width = views.lineDashView.openImageView.frame.size.width
-        views.lineDashView.frame.size.height = views.lineDashView.frame.size.height * self.originX
-        views.imageView.frame.size.height = views.imageView.frame.height * self.originX
+    func originalScale(centerOrigin: CGFloat? = nil) {
+        self.originY = lineDashView.openImageView.frame.height/lineDashView.frame.size.height
+        self.originX = lineDashView.openImageView.frame.width/lineDashView.frame.size.width
+        imageView.frame.size.width = imageView.frame.width * self.originX
+        lineDashView.frame.size.width = lineDashView.openImageView.frame.size.width
+        lineDashView.frame.size.height = lineDashView.frame.size.height * self.originX
+        imageView.frame.size.height = imageView.frame.height * self.originX
 
-        let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
-        let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
+        let centerY = lineDashView.openImageView.frame.size.height/2 - lineDashView.frame.size.height/2
+        let centerX = lineDashView.openImageView.frame.size.width/2 - lineDashView.frame.size.width/2
 
-        views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x*self.originX + views.imageView.frame.origin.x*self.originX + centerX
-        views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y*self.originX + views.imageView.frame.origin.y*self.originX + centerY + (centerOrigin ?? CGFloat())
-        views.lineDashView.frame.origin.y = centerY + (centerOrigin ?? CGFloat())
-        views.lineDashView.frame.origin.x = centerX
+        imageView.frame.origin.x = -lineDashView.frame.origin.x*self.originX + imageView.frame.origin.x*self.originX + centerX
+        imageView.frame.origin.y = -lineDashView.frame.origin.y*self.originX + imageView.frame.origin.y*self.originX + centerY + (centerOrigin ?? CGFloat())
+        lineDashView.frame.origin.y = centerY + (centerOrigin ?? CGFloat())
+        lineDashView.frame.origin.x = centerX
 
-        views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
-        views.lineDashView.isHidden = true
-        views.cALayerView.gridHideen(true)
+        cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
+        lineDashView.isHidden = true
+        cALayerView.gridHideen(true)
         }
 }

@@ -45,10 +45,10 @@ class CALayerView: UIView {
         super.init(coder: aDecoder)
     }
 
-    func tori(vc: ViewController,bool: Bool){
+    func tori(gesture: GestureObject,bool: Bool){
 
-        vc.lineDashView.layer.borderWidth = 1
-        vc.lineDashView.layer.borderColor = UIColor.white.cgColor
+        gesture.lineDashView.layer.borderWidth = 1
+        gesture.lineDashView.layer.borderColor = UIColor.white.cgColor
         hollowTargetLayer.bounds = self.bounds
         hollowTargetLayer.frame.size.height = UIScreen.main.bounds.height
         hollowTargetLayer.position = CGPoint(
@@ -61,7 +61,7 @@ class CALayerView: UIView {
 
         maskLayer.bounds = hollowTargetLayer.bounds
 
-        path =  UIBezierPath.init(rect: vc.lineDashView.frame)
+        path =  UIBezierPath.init(rect: gesture.lineDashView.frame)
         path.append(UIBezierPath(rect: maskLayer.bounds))
 
         maskLayer.fillColor = UIColor.black.cgColor
@@ -76,28 +76,28 @@ class CALayerView: UIView {
 
         //角のUI設定
         girdViewLeftTopWidth.backgroundColor = UIColor.white
-        girdViewLeftTopWidth.frame = CGRect(x: vc.lineDashView.frame.origin.x, y: vc.lineDashView.frame.origin.y-wide, width: width, height: wide)
+        girdViewLeftTopWidth.frame = CGRect(x: gesture.lineDashView.frame.origin.x, y: gesture.lineDashView.frame.origin.y-wide, width: width, height: wide)
 
         girdViewLeftUpRightHeight.backgroundColor = UIColor.white
-        girdViewLeftUpRightHeight.frame = CGRect(x: vc.lineDashView.frame.origin.x-wide, y: vc.lineDashView.frame.origin.y-wide, width: wide, height: height)
+        girdViewLeftUpRightHeight.frame = CGRect(x: gesture.lineDashView.frame.origin.x-wide, y: gesture.lineDashView.frame.origin.y-wide, width: wide, height: height)
 
         girdViewLeftDownWidth.backgroundColor = UIColor.white
-        girdViewLeftDownWidth.frame = CGRect(x: vc.lineDashView.frame.origin.x, y: vc.lineDashView.frame.height+vc.lineDashView.frame.origin.y, width: width, height: wide)
+        girdViewLeftDownWidth.frame = CGRect(x: gesture.lineDashView.frame.origin.x, y: gesture.lineDashView.frame.height+gesture.lineDashView.frame.origin.y, width: width, height: wide)
 
         girdViewLeftDownHeight.backgroundColor = UIColor.white
-        girdViewLeftDownHeight.frame = CGRect(x: vc.lineDashView.frame.origin.x-wide, y: vc.lineDashView.frame.height+vc.lineDashView.frame.origin.y-width, width: wide, height: height)
+        girdViewLeftDownHeight.frame = CGRect(x: gesture.lineDashView.frame.origin.x-wide, y: gesture.lineDashView.frame.height+gesture.lineDashView.frame.origin.y-width, width: wide, height: height)
 
         girdViewRightUpWidth.backgroundColor = UIColor.white
-        girdViewRightUpWidth.frame = CGRect(x: vc.lineDashView.frame.width + vc.lineDashView.frame.origin.x-width , y: vc.lineDashView.frame.origin.y-wide, width: width, height: wide)
+        girdViewRightUpWidth.frame = CGRect(x: gesture.lineDashView.frame.width + gesture.lineDashView.frame.origin.x-width , y: gesture.lineDashView.frame.origin.y-wide, width: width, height: wide)
 
         girdViewRightUpHeight.backgroundColor = UIColor.white
-        girdViewRightUpHeight.frame = CGRect(x: vc.lineDashView.frame.width + vc.lineDashView.frame.origin.x, y: vc.lineDashView.frame.origin.y-wide, width: wide, height: height)
+        girdViewRightUpHeight.frame = CGRect(x: gesture.lineDashView.frame.width + gesture.lineDashView.frame.origin.x, y: gesture.lineDashView.frame.origin.y-wide, width: wide, height: height)
 
         girdViewRightDownWidth.backgroundColor = UIColor.white
-        girdViewRightDownWidth.frame = CGRect(x: vc.lineDashView.frame.width + vc.lineDashView.frame.origin.x-width, y: vc.lineDashView.frame.height+vc.lineDashView.frame.origin.y, width: width, height: wide)
+        girdViewRightDownWidth.frame = CGRect(x: gesture.lineDashView.frame.width + gesture.lineDashView.frame.origin.x-width, y: gesture.lineDashView.frame.height+gesture.lineDashView.frame.origin.y, width: width, height: wide)
 
         girdViewRightDownHeight.backgroundColor = UIColor.white
-        girdViewRightDownHeight.frame = CGRect(x: vc.lineDashView.frame.width + vc.lineDashView.frame.origin.x, y: vc.lineDashView.frame.height+vc.lineDashView.frame.origin.y-width, width: wide, height: height)
+        girdViewRightDownHeight.frame = CGRect(x: gesture.lineDashView.frame.width + gesture.lineDashView.frame.origin.x, y: gesture.lineDashView.frame.height+gesture.lineDashView.frame.origin.y-width, width: wide, height: height)
  
         girdViewLeftTopWidth.isHidden = bool
         girdViewLeftUpRightHeight.isHidden = bool
@@ -121,10 +121,10 @@ class CALayerView: UIView {
         girdViewRightDownHeight.isHidden = bool
     }
 
-    func effect(vc: ViewController,bool: Bool, boolSecound:Bool){
+    func effect(gesture: GestureObject, bool: Bool, boolSecound:Bool){
 
-        vc.lineDashView.layer.borderWidth = 1
-        vc.lineDashView.layer.borderColor = UIColor.white.cgColor
+        gesture.lineDashView.layer.borderWidth = 1
+        gesture.lineDashView.layer.borderColor = UIColor.white.cgColor
 
         hollowTargetLayer.bounds = self.bounds
         hollowTargetLayer.frame.size.height = UIScreen.main.bounds.height
@@ -135,7 +135,7 @@ class CALayerView: UIView {
         // 四角いマスクレイヤーを作る
         maskLayer.bounds = hollowTargetLayer.bounds
 
-        path =  UIBezierPath.init(rect: vc.lineDashView.frame)
+        path =  UIBezierPath.init(rect: gesture.lineDashView.frame)
         path.append(UIBezierPath(rect: maskLayer.bounds))
 
         maskLayer.path = path.cgPath
@@ -155,9 +155,9 @@ class CALayerView: UIView {
         effectView.layer.mask = maskLayer
 
         if boolSecound == false {
-            vc.lineDashView.borderView.frame = vc.lineDashView.frame
-            vc.view.addSubview(vc.lineDashView.borderView)
-            vc.view.addSubview(effectView)
+            gesture.lineDashView.borderView.frame = gesture.lineDashView.frame
+            gesture.lineDashView.openImageView.addSubview(gesture.lineDashView.borderView)
+            gesture.lineDashView.openImageView.addSubview(effectView)
         }
         effectView.isHidden = bool
     }

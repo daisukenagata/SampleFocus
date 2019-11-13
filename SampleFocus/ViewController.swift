@@ -15,14 +15,7 @@ struct CommonStructure {
 
 class ViewController: UIViewController,UIGestureRecognizerDelegate {
 
-    var timer = Timer()
-    var timerFlag = Bool()
-    var imageView = UIImageView()
-    var cALayerView = CALayerView()
-    var lineDashView = LineDashView()
     var gestureObject = GestureObject()
-    var touchFlag = TouchFlag.touchBottomRight
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,46 +26,46 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         view.addGestureRecognizer( CommonStructure.swipePanGesture)
         view.backgroundColor = .blue
         
-        imageView.image = UIImage(named: "Mac")
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame = CGRect(x: 30, y: 30, width: view.frame.width - 60, height: view.frame.height - 30)
-        view.addSubview(imageView)
+        gestureObject.imageView.image = UIImage(named: "Mac")
+        gestureObject.imageView.contentMode = .scaleAspectFit
+        gestureObject.imageView.frame = CGRect(x: 30, y: 30, width: view.frame.width - 60, height: view.frame.height - 30)
+        view.addSubview(gestureObject.imageView)
         // レイヤーのマスキング
-        cALayerView.tori(vc: self, bool: true)
+        gestureObject.cALayerView.tori(gesture: gestureObject, bool: true)
         
-        view.layer.addSublayer(cALayerView.hollowTargetLayer)
-        view.addSubview(cALayerView)
+        view.layer.addSublayer(gestureObject.cALayerView.hollowTargetLayer)
+        view.addSubview(gestureObject.cALayerView)
         
-        view.addSubview(lineDashView)
-        lineDashView.isHidden = true
+        view.addSubview(gestureObject.lineDashView)
+        gestureObject.lineDashView.isHidden = true
     }
 
     @objc func panTapped(sender:UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: view)
         //画面をなぞる場合にフォーカスの設定
-        self.cALayerView.effect(vc: self,bool: true, boolSecound: true)
-        self.cALayerView.tori(vc: self, bool: false)
+        self.gestureObject.cALayerView.effect(gesture: gestureObject, bool: true, boolSecound: true)
+        self.gestureObject.cALayerView.tori(gesture: gestureObject, bool: false)
         switch sender.state {
         case .ended:
             //指が離れた際の座標を取得
-            gestureObject.endPoint = lineDashView.frame.origin
-            gestureObject.endFrame = lineDashView.frame
+            gestureObject.endPoint = gestureObject.lineDashView.frame.origin
+            gestureObject.endFrame = gestureObject.lineDashView.frame
             //フォーカス計算のメソッド呼び出し
-            timerFlag = false
+            gestureObject.timerFlag = false
             timerSetting()
             break
         case .possible:
             break
         case .began:
-            lineDashView.isHidden = false
-            timerFlag = true
-            timer.invalidate()
+            gestureObject.lineDashView.isHidden = false
+            gestureObject.timerFlag = true
+            gestureObject.timer.invalidate()
             //タップした領域を取得
-            touchFlag = self.gestureObject.cropEdgeForPoint(point: gestureObject.framePoint, views: self)
+            gestureObject.touchFlag = self.gestureObject.cropEdgeForPoint(point: gestureObject.framePoint)
             break
         case .changed:
              //タップされた領域からMaskするViewのサイズ、座標計算
-            self.gestureObject.updatePoint(point: position,views: self,touchFlag: self.touchFlag)
+            self.gestureObject.updatePoint(point: position,views: self,touchFlag: self.gestureObject.touchFlag)
             break
         case .cancelled:
             break
@@ -90,7 +83,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
 
     func timerSetting() {
-        timer = Timer.scheduledTimer(timeInterval:3.0,
+        gestureObject.timer = Timer.scheduledTimer(timeInterval:3.0,
                                      target: self,
                                      selector: #selector(animetionSet),
                                      userInfo: nil,
@@ -98,10 +91,10 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
 
     @objc func animetionSet() {
-        if timerFlag == false {
-            gestureObject.matchGround(views: self, imageView: imageView)
-            timerFlag = true
-            timer.invalidate()
+        if gestureObject.timerFlag == false {
+            gestureObject.matchGround(imageView: gestureObject.imageView)
+            gestureObject.timerFlag = true
+            gestureObject.timer.invalidate()
         }
     }
 }
