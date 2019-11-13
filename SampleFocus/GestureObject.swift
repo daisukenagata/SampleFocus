@@ -200,26 +200,21 @@ class GestureObject: UIView {
         let sizeSet = views.lineDashView.frame.size
         if (sizeSet.width / sizeSet.height) > 0.5 && 1.5 > (sizeSet.width / sizeSet.height)  {
             if views.lineDashView.frame.width < UIScreen.main.bounds.width/2 || views.lineDashView.frame.height < UIScreen.main.bounds.height/2{
-                matchSquareSmall(views: views)
+                originalScale(views: views)
             } else {
-                matchSquare(views: views)
+                originalScale(views: views)
             }
         }else if (sizeSet.width / sizeSet.height) < 0.7 || 1.45 < (sizeSet.width / sizeSet.height)  {
             if views.lineDashView.frame.height > views.lineDashView.frame.width {
                 matchVertical(views: views, imageView: imageView)
             } else {
-                matchSide(views: views)
+                originalScale(views: views)
             }
         } else {
-            matchSquareSmall(views: views)
+            originalScale(views: views, centerOrigin: 30)
         }
     }
     
-    func matchSquare(views: ViewController){ originalScale(views: views) }
-
-    func matchSquareSmall(views: ViewController) { originalScale(views: views, centerOrigin: 30) }
-
-    func matchSide(views: ViewController) { originalScale(views: views) }
 
     func matchVertical(views: ViewController,imageView: UIImageView){
         UIView.animate(withDuration: TimeInterval(0),
@@ -261,6 +256,7 @@ class GestureObject: UIView {
                             
                             views.cALayerView.hollowTargetLayer.backgroundColor = UIColor.clear.cgColor
                             views.lineDashView.isHidden = true
+                            views.cALayerView.gridHideen(true)
             })
         })
     }
