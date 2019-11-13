@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class GestureObject: UIView {
+final class GestureObject: NSObject {
 
     enum TouchFlag {
         case touchTopLeft
@@ -37,8 +37,7 @@ final class GestureObject: UIView {
     private var originX = CGFloat()
     private var magnification: CGFloat = 2
     
-    init(){
-        super.init(frame: .zero)
+    override init(){
         imageView    = UIImageView()
         cALayerView  = CALayerView()
         lineDashView = LineDashView()
