@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LineDashView: UIView {
+final class LineDashView: UIView {
     
     var xWidth: CGFloat = 5
     var yHeight: CGFloat = 30

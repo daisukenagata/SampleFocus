@@ -20,7 +20,7 @@ enum TouchFlag {
     case touchNone
 }
 
-class GestureObject: UIView {
+final class GestureObject: UIView {
 
     var framePoint = CGPoint()
     var endPoint = CGPoint()

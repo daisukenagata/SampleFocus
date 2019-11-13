@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CALayerView: UIView {
+final class CALayerView: UIView {
 
     var hollowTargetLayer: CALayer?
 
