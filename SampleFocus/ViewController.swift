@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         g = GestureView(view.frame ,imageSt: "Mac")
         view.addSubview(g ?? UIView())
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { v in

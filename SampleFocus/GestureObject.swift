@@ -36,7 +36,7 @@ final class GestureObject: NSObject {
     private var originY = CGFloat()
     private var originX = CGFloat()
     private var magnification: CGFloat = 2
-    
+
     override init(){
         imageView    = UIImageView()
         cALayerView  = CALayerView()
@@ -198,16 +198,16 @@ final class GestureObject: NSObject {
         let kTOCropViewMinimumBoxSize = 44
         // フォーカスの最小枠と最大枠
         let minSize = CGSize(width: kTOCropViewMinimumBoxSize, height: kTOCropViewMinimumBoxSize)
-        let maxSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        let maxSize = CGSize(width: lineDashView.openImageView.frame.width, height: lineDashView.openImageView.frame.height)
         lineDashView.frame.size.width  = max(lineDashView.frame.size.width, minSize.width)
         lineDashView.frame.size.height  = max(lineDashView.frame.size.height, minSize.height)
-        
+
         lineDashView.frame.size.width  = min(lineDashView.frame.size.width, maxSize.width)
         lineDashView.frame.size.height  = min(lineDashView.frame.size.height, maxSize.height)
-        
+
         lineDashView.frame.origin.x  = max(lineDashView.frame.origin.x, lineDashView.frame.minX)
         lineDashView.frame.origin.x = min(lineDashView.frame.origin.x, lineDashView.frame.maxX - minSize.width)
-        
+
         lineDashView.frame.origin.y  = max(lineDashView.frame.origin.y, lineDashView.frame.minY)
         lineDashView.frame.origin.y  = min(lineDashView.frame.origin.y, lineDashView.frame.maxY - minSize.height)
         
@@ -233,7 +233,7 @@ final class GestureObject: NSObject {
         }
          originalScale(centerOrigin: 30)
     }
-    
+
 
     func matchVertical(){
         guard let lineDashView = lineDashView, let imageView = imageView, let cALayerView = cALayerView else { return }
@@ -254,28 +254,28 @@ final class GestureObject: NSObject {
         }
         self.originY = lineDashView.openImageView.frame.height/lineDashView.frame.size.height
         self.originX = lineDashView.openImageView.frame.width/lineDashView.frame.size.width
-        
+
         imageView.frame.size.width = imageView.frame.width * self.originX/self.magnification
-        imageView.frame.size.height = imageView.frame.height * self.originX/self.self.magnification
-        
+        imageView.frame.size.height = imageView.frame.height * self.originX/self.magnification
+
         lineDashView.frame.size.width = lineDashView.frame.size.width * self.originX/self.magnification
         lineDashView.frame.size.height = lineDashView.frame.height * self.originX/self.magnification
-        
+
         let centerY = lineDashView.openImageView.frame.size.height/2 - lineDashView.frame.size.height/2
         let centerX = lineDashView.openImageView.frame.size.width/2 - lineDashView.frame.size.width/2
-        
+
         imageView.frame.origin.x = -lineDashView.frame.origin.x*self.originX/self.magnification + imageView.frame.origin.x*self.originX/self.magnification + centerX
         imageView.frame.origin.y = -lineDashView.frame.origin.y*self.originX/self.magnification + imageView.frame.origin.y*self.originX/self.magnification + centerY
         lineDashView.frame.origin.x = centerX
         lineDashView.frame.origin.y = centerY
-        
+
         cALayerView.hollowTargetLayer?.backgroundColor = UIColor.clear.cgColor
         lineDashView.isHidden = true
         lineDashView.frame = lineDashView.openImageView.frame
         lineDashView.frame.size.height -= UINavigationController.init().navigationBar.frame.height
         cALayerView.gridHideen(true)
     }
-    
+
     func originalScale(centerOrigin: CGFloat? = nil) {
         guard let lineDashView = lineDashView, let imageView = imageView, let cALayerView = cALayerView else { return }
         self.originY = lineDashView.openImageView.frame.height/lineDashView.frame.size.height

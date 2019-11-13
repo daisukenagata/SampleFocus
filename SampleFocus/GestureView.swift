@@ -18,14 +18,14 @@ final class GestureView: UIView, UIGestureRecognizerDelegate {
     init(_ frame: CGRect? = nil, imageSt: String? = nil) {
         super.init(frame: frame ?? CGRect())
 
-        initSetting(imageSt: imageSt ?? "")
+        initSetting(imageSt ?? "")
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private func initSetting(imageSt: String) {
+
+    private func initSetting(_ imageSt: String) {
         // ジャスチャー
         swipePanGesture = UIPanGestureRecognizer(target: self, action:#selector(panTapped))
         swipePanGesture.delegate = self
@@ -46,7 +46,7 @@ final class GestureView: UIView, UIGestureRecognizerDelegate {
         self.addSubview(gestureObject.lineDashView ?? UIView())
         gestureObject.lineDashView?.isHidden = true
     }
-    
+
     @objc func panTapped(sender:UIPanGestureRecognizer) {
         let position: CGPoint = sender.location(in: self)
         //画面をなぞる場合にフォーカスの設定
