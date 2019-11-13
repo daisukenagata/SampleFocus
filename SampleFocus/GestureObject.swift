@@ -222,18 +222,18 @@ class GestureObject: UIView {
         }, completion: { _ in
             UIView.animate(withDuration: 0,
                            animations: {
-                            self.originY = ((views.lineDashView.openImageView.frame.height)/views.lineDashView.frame.size.height)
-                            self.originX = (views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width)
+                            self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
+                            self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
                             views.imageView.frame.size.height = views.imageView.frame.height*self.originY
                             views.lineDashView.frame.size.height = views.lineDashView.frame.size.height * self.originY
-                            views.imageView.frame.size.width = (views.imageView.frame.width * self.originX)
+                            views.imageView.frame.size.width = views.imageView.frame.width * self.originX
                             views.lineDashView.frame.size.width = views.lineDashView.openImageView.frame.size.width
                             
-                            let centerY = (views.view.frame.size.height/2) - ((views.lineDashView.frame.size.height)/2)
-                            let centerX = (views.view.frame.size.width/2) - ((views.lineDashView.frame.size.width)/2)
+                            let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
+                            let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
                             
-                            views.imageView.frame.origin.y = ((-views.lineDashView.frame.origin.y*self.originY) + views.imageView.frame.origin.y*self.originY) + centerY
-                            views.imageView.frame.origin.x = ((-views.lineDashView.frame.origin.x*self.originX) + views.imageView.frame.origin.x*self.originX) + centerX
+                            views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y*self.originY + views.imageView.frame.origin.y*self.originY + centerY
+                            views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x*self.originX + views.imageView.frame.origin.x*self.originX + centerX
                             views.lineDashView.frame.origin.y = centerY
                             views.lineDashView.frame.origin.x = centerX
             
@@ -249,18 +249,18 @@ class GestureObject: UIView {
         }, completion: { _ in
             UIView.animate(withDuration: 0,
                            animations: {
-                            self.originY = ((views.lineDashView.openImageView.frame.height)/views.lineDashView.frame.size.height)
-                            self.originX = (views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width)
+                            self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
+                            self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
                             views.imageView.frame.size.height = views.imageView.frame.height * self.originX
                             views.lineDashView.frame.size.height = views.lineDashView.frame.size.height * self.originX
-                            views.imageView.frame.size.width = (views.imageView.frame.width * self.originX)
+                            views.imageView.frame.size.width = views.imageView.frame.width * self.originX
                             views.lineDashView.frame.size.width = views.lineDashView.openImageView.frame.size.width
                             
-                            let centerY = (views.view.frame.size.height/2) - ((views.lineDashView.frame.size.height)/2)
-                            let centerX = (views.view.frame.size.width/2) - ((views.lineDashView.frame.size.width)/2)
+                            let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
+                            let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
                             
-                            views.imageView.frame.origin.y = (-views.lineDashView.frame.origin.y * self.originX) + (views.imageView.frame.origin.y * self.originX) + centerY - 30
-                            views.imageView.frame.origin.x = (-views.lineDashView.frame.origin.x * self.originX) + (views.imageView.frame.origin.x * self.originX) + centerX
+                            views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y * self.originX + views.imageView.frame.origin.y * self.originX + centerY - 30
+                            views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x * self.originX + views.imageView.frame.origin.x * self.originX + centerX
                             views.lineDashView.frame.origin.y = centerY - 30
                             views.lineDashView.frame.origin.x = centerX
                             
@@ -276,18 +276,18 @@ class GestureObject: UIView {
         }, completion: { _ in
             UIView.animate(withDuration: 0,
                            animations: {
-                            self.originY = ((views.lineDashView.openImageView.frame.height)/views.lineDashView.frame.size.height)
-                            self.originX = (views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width)
-                            views.imageView.frame.size.width = (views.imageView.frame.width * self.originX)
+                            self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
+                            self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
+                            views.imageView.frame.size.width = views.imageView.frame.width * self.originX
                             views.lineDashView.frame.size.width = views.lineDashView.openImageView.frame.size.width
                             views.lineDashView.frame.size.height = views.lineDashView.frame.size.height * self.originX
-                            views.imageView.frame.size.height = ((views.imageView.frame.height * self.originX))
+                            views.imageView.frame.size.height = views.imageView.frame.height * self.originX
                             
-                            let centerY = (views.view.frame.size.height/2) - ((views.lineDashView.frame.size.height)/2)
-                            let centerX = (views.view.frame.size.width/2) - ((views.lineDashView.frame.size.width)/2)
+                            let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
+                            let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
                             
-                            views.imageView.frame.origin.x = ((-views.lineDashView.frame.origin.x*self.originX) + views.imageView.frame.origin.x*self.originX ) + centerX
-                            views.imageView.frame.origin.y = ((-views.lineDashView.frame.origin.y*self.originX) + views.imageView.frame.origin.y*self.originX ) + centerY
+                            views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x*self.originX + views.imageView.frame.origin.x*self.originX + centerX
+                            views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y*self.originX + views.imageView.frame.origin.y*self.originX + centerY
                             views.lineDashView.frame.origin.y = centerY
                             views.lineDashView.frame.origin.x = centerX
                             
@@ -303,35 +303,35 @@ class GestureObject: UIView {
         }, completion: { _ in
             UIView.animate(withDuration: 0,
                            animations: {
-                            if views.lineDashView.frame.size.width < (views.lineDashView.openImageView.frame.width/5)  {
+                            if views.lineDashView.frame.size.width < views.lineDashView.openImageView.frame.width/5 {
                                 self.magnification = 6.5
-                            } else if views.lineDashView.frame.size.width < (views.lineDashView.openImageView.frame.width/4)  {
+                            } else if views.lineDashView.frame.size.width < views.lineDashView.openImageView.frame.width/4 {
                                 self.magnification = 3.5
-                            }else if views.lineDashView.frame.size.width < (views.lineDashView.openImageView.frame.width/3)  {
+                            }else if views.lineDashView.frame.size.width < views.lineDashView.openImageView.frame.width/3 {
                                 self.magnification = 3
-                            } else if views.lineDashView.frame.size.width < (views.lineDashView.openImageView.frame.width/2)  {
+                            } else if views.lineDashView.frame.size.width < views.lineDashView.openImageView.frame.width/2 {
                                 self.magnification = 2
-                            } else if views.imageView.frame.size.width > (views.view.frame.width)  {
+                            } else if views.imageView.frame.size.width > views.view.frame.width {
                                 self.magnification = 2.5
                             } else {
                                 self.originY = 1.0
                                 self.originX = 1.0
                                 self.magnification = 1.0
                             }
-                            self.originY = ((views.lineDashView.openImageView.frame.height)/views.lineDashView.frame.size.height)
-                            self.originX = (views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width)
+                            self.originY = views.lineDashView.openImageView.frame.height/views.lineDashView.frame.size.height
+                            self.originX = views.lineDashView.openImageView.frame.width/views.lineDashView.frame.size.width
                             
-                            views.imageView.frame.size.width = (views.imageView.frame.width * self.originX/self.magnification)
-                            views.imageView.frame.size.height = (views.imageView.frame.height * self.originX/self.self.magnification)
+                            views.imageView.frame.size.width = views.imageView.frame.width * self.originX/self.magnification
+                            views.imageView.frame.size.height = views.imageView.frame.height * self.originX/self.self.magnification
                             
-                            views.lineDashView.frame.size.width = views.lineDashView.frame.size.width * (self.originX/self.magnification)
+                            views.lineDashView.frame.size.width = views.lineDashView.frame.size.width * self.originX/self.magnification
                             views.lineDashView.frame.size.height = views.lineDashView.frame.height * self.originX/self.magnification
                             
-                            let centerY = (views.view.frame.size.height/2) - ((views.lineDashView.frame.size.height)/2)
-                            let centerX = (views.view.frame.size.width/2) - ((views.lineDashView.frame.size.width)/2)
+                            let centerY = views.view.frame.size.height/2 - views.lineDashView.frame.size.height/2
+                            let centerX = views.view.frame.size.width/2 - views.lineDashView.frame.size.width/2
                             
-                            views.imageView.frame.origin.x = ((-views.lineDashView.frame.origin.x*(self.originX/self.magnification)) + views.imageView.frame.origin.x*self.originX/self.magnification) + centerX
-                            views.imageView.frame.origin.y = ((-views.lineDashView.frame.origin.y*(self.originX/self.magnification)) + views.imageView.frame.origin.y*self.originX/self.magnification) + centerY
+                            views.imageView.frame.origin.x = -views.lineDashView.frame.origin.x*self.originX/self.magnification + views.imageView.frame.origin.x*self.originX/self.magnification + centerX
+                            views.imageView.frame.origin.y = -views.lineDashView.frame.origin.y*self.originX/self.magnification + views.imageView.frame.origin.y*self.originX/self.magnification + centerY
                             views.lineDashView.frame.origin.x = centerX
                             views.lineDashView.frame.origin.y = centerY
                             
