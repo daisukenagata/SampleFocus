@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB500D38237BC8CC003C9602 /* GestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB500D37237BC8CC003C9602 /* GestureView.swift */; };
 		BBD893AD20E74130008203C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD893AC20E74130008203C0 /* AppDelegate.swift */; };
 		BBD893AF20E74130008203C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD893AE20E74130008203C0 /* ViewController.swift */; };
 		BBD893B220E74130008203C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBD893B020E74130008203C0 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB500D37237BC8CC003C9602 /* GestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureView.swift; sourceTree = "<group>"; };
 		BBD893A920E74130008203C0 /* SampleFocus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleFocus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBD893AC20E74130008203C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBD893AE20E74130008203C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				BBD893AC20E74130008203C0 /* AppDelegate.swift */,
 				BBD893AE20E74130008203C0 /* ViewController.swift */,
 				BBD893DA20E74188008203C0 /* GestureObject.swift */,
+				BB500D37237BC8CC003C9602 /* GestureView.swift */,
 				BBD893DE20E746F1008203C0 /* CALayerView.swift */,
 				BBD893DC20E746A8008203C0 /* LineDashView.swift */,
 				BBD893B020E74130008203C0 /* Main.storyboard */,
@@ -270,6 +273,7 @@
 			files = (
 				BBD893DF20E746F1008203C0 /* CALayerView.swift in Sources */,
 				BBD893DD20E746A8008203C0 /* LineDashView.swift in Sources */,
+				BB500D38237BC8CC003C9602 /* GestureView.swift in Sources */,
 				BBD893AF20E74130008203C0 /* ViewController.swift in Sources */,
 				BBD893AD20E74130008203C0 /* AppDelegate.swift in Sources */,
 				BBD893DB20E74188008203C0 /* GestureObject.swift in Sources */,
