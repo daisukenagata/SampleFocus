@@ -12,6 +12,9 @@ final class GestureView: UIView, UIGestureRecognizerDelegate {
 
     var gestureObject = GestureObject()
     var swipePanGesture = UIPanGestureRecognizer()
+    
+    private let margin        : CGFloat = 30
+    private let animationTimer: Double = 3.0
 
     init(_ frame: CGRect? = nil, imageSt: String? = nil) {
         super.init(frame: frame ?? CGRect())
@@ -33,7 +36,7 @@ final class GestureView: UIView, UIGestureRecognizerDelegate {
 
         gestureObject.imageView?.image = UIImage(named: imageSt)
         gestureObject.imageView?.contentMode = .scaleAspectFit
-        gestureObject.imageView?.frame = CGRect(x: 30, y: 30, width: self.frame.width - 60, height: self.frame.height - 30)
+        gestureObject.imageView?.frame = CGRect(x: margin, y: margin, width: self.frame.width - margin*2, height: self.frame.height - margin)
         self.addSubview(gestureObject.imageView ?? UIImageView())
         // レイヤーのマスキング
         gestureObject.cALayerView?.tori(gestureObject, bool: true)
@@ -88,7 +91,7 @@ final class GestureView: UIView, UIGestureRecognizerDelegate {
     }
 
     func timerSetting() {
-        gestureObject.timer = Timer.scheduledTimer(timeInterval:3.0,
+        gestureObject.timer = Timer.scheduledTimer(timeInterval:animationTimer,
                                      target: self,
                                      selector: #selector(animetionSet),
                                      userInfo: nil,
