@@ -10,20 +10,22 @@ import UIKit
 
 class CALayerView: UIView {
 
-    var path =  UIBezierPath()
-    let maskLayer = CAShapeLayer()
     var hollowTargetLayer: CALayer?
-    let girdViewLeftTopWidth = UIView()
-    let girdViewLeftUpRightHeight = UIView()
-    let girdViewLeftDownWidth = UIView()
-    let girdViewLeftDownHeight = UIView()
-    let girdViewRightUpWidth = UIView()
-    let girdViewRightUpHeight = UIView()
-    let girdViewRightDownWidth = UIView()
-    let girdViewRightDownHeight = UIView()
-    let width: CGFloat = 20
-    let height: CGFloat = 22
-    let wide: CGFloat = 2
+
+    private var path     :  UIBezierPath?
+    private var maskLayer: CAShapeLayer?
+
+    private let girdViewLeftTopWidth = UIView()
+    private let girdViewLeftUpRightHeight = UIView()
+    private let girdViewLeftDownWidth = UIView()
+    private let girdViewLeftDownHeight = UIView()
+    private  let girdViewRightUpWidth = UIView()
+    private let girdViewRightUpHeight = UIView()
+    private let girdViewRightDownWidth = UIView()
+    private let girdViewRightDownHeight = UIView()
+    private let width: CGFloat = 20
+    private let height: CGFloat = 22
+    private let wide: CGFloat = 2
 
 
     override init(frame: CGRect) {
@@ -41,6 +43,8 @@ class CALayerView: UIView {
         self.addSubview(girdViewRightDownHeight)
         
         hollowTargetLayer = CALayer()
+        maskLayer         = CAShapeLayer()
+        path              =  UIBezierPath()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +53,10 @@ class CALayerView: UIView {
 
     func tori(_ gesture: GestureObject,bool: Bool){
 
-        guard let lineDashView = gesture.lineDashView, let hollowTargetLayer = hollowTargetLayer else { return }
+        guard   let lineDashView = gesture.lineDashView,
+                let hollowTargetLayer = hollowTargetLayer,
+                let maskLayer = maskLayer
+            else { return }
 
         lineDashView.layer.borderWidth = 1
         lineDashView.layer.borderColor = UIColor.white.cgColor
@@ -66,10 +73,10 @@ class CALayerView: UIView {
         maskLayer.bounds = hollowTargetLayer.bounds
 
         path =  UIBezierPath.init(rect: gesture.lineDashView?.frame ?? CGRect())
-        path.append(UIBezierPath(rect: maskLayer.bounds))
+        path?.append(UIBezierPath(rect: maskLayer.bounds))
 
         maskLayer.fillColor = UIColor.black.cgColor
-        maskLayer.path = path.cgPath
+        maskLayer.path = path?.cgPath
         maskLayer.position = CGPoint(
             x: hollowTargetLayer.bounds.width / 2.0,
             y: (hollowTargetLayer.bounds.height / 2.0)
@@ -127,7 +134,7 @@ class CALayerView: UIView {
 
     func effect(_ gesture: GestureObject, bool: Bool){
 
-        guard let hollowTargetLayer = hollowTargetLayer else { return }
+        guard let hollowTargetLayer = hollowTargetLayer, let maskLayer = maskLayer else { return }
 
         guard let lineDashView = gesture.lineDashView else { return }
         gesture.lineDashView?.layer.borderWidth = 1
@@ -143,9 +150,9 @@ class CALayerView: UIView {
         maskLayer.bounds = hollowTargetLayer.bounds
 
         path =  UIBezierPath.init(rect: lineDashView.frame)
-        path.append(UIBezierPath(rect: maskLayer.bounds))
+        path?.append(UIBezierPath(rect: maskLayer.bounds))
 
-        maskLayer.path = path.cgPath
+        maskLayer.path = path?.cgPath
         maskLayer.position = CGPoint(
             x: hollowTargetLayer.bounds.width / 2.0,
             y: (hollowTargetLayer.bounds.height / 2.0)
