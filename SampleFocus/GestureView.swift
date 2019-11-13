@@ -12,7 +12,7 @@ final class GestureView: UIView, UIGestureRecognizerDelegate {
 
     private var gestureObject   = GestureObject()
     private var swipePanGesture = UIPanGestureRecognizer()
-    private let margin          : CGFloat = 30
+    private let margin          : CGFloat = 15
     private let animationTimer  : Double = 3.0
 
     init(_ frame: CGRect? = nil, imageSt: String? = nil) {
@@ -72,7 +72,7 @@ final class GestureView: UIView, UIGestureRecognizerDelegate {
             break
         case .changed:
              //タップされた領域からMaskするViewのサイズ、座標計算
-            self.gestureObject.updatePoint(point: position,touchFlag: self.gestureObject.touchFlag)
+            self.gestureObject.updatePoint(gestureObject.imageView?.frame.height ?? 0.0, point: position,touchFlag: self.gestureObject.touchFlag)
             break
         case .cancelled:
             break

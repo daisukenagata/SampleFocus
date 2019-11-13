@@ -103,7 +103,7 @@ final class GestureObject: NSObject {
         return TouchFlag.touchNone
     }
     //タップされた領域からMaskするViewのサイズ、座標計算
-    func updatePoint(point: CGPoint, touchFlag: TouchFlag)  {
+    func updatePoint(_ screenWidth: CGFloat, point: CGPoint, touchFlag: TouchFlag)  {
         guard let lineDashView = lineDashView, let imageView = imageView else { return }
         switch touchFlag {
         case .touchNone:break
@@ -126,7 +126,7 @@ final class GestureObject: NSObject {
                 lineDashView.frame.origin.x = point.x
                 lineDashView.frame.size.width = -point.x
                 lineDashView.frame.origin.y =  point.y
-                lineDashView.frame.size.height = -(point.y - 60)
+                lineDashView.frame.size.height = -(point.y - 30)
             }
             break
         case .touchBottomLeft:
@@ -139,7 +139,7 @@ final class GestureObject: NSObject {
                 lineDashView.frame.origin.x =  point.x
                 lineDashView.frame.size.width =  -point.x + imageView.frame.width
                 lineDashView.frame.origin.y = point.y
-                lineDashView.frame.size.height = -(point.y - 60)
+                lineDashView.frame.size.height = -(point.y - 30)
             }
             break
         case .touchTop:
@@ -148,7 +148,7 @@ final class GestureObject: NSObject {
                 lineDashView.frame.size.height =  -point.y + endFrame.maxY
             } else {
                 lineDashView.frame.origin.y = point.y
-                lineDashView.frame.size.height = -point.y + lineDashView.screenWidth + 60
+                lineDashView.frame.size.height = -point.y + screenWidth + 30
             }
             break
         case .touchDown:
@@ -157,7 +157,7 @@ final class GestureObject: NSObject {
                 lineDashView.frame.origin.y = endPoint.y
             } else {
                 lineDashView.frame.origin.y = point.y
-                lineDashView.frame.size.height = -(point.y - 60)
+                lineDashView.frame.size.height = -(point.y - 30)
             }
             break
         case .touchSideLeft:
@@ -179,7 +179,7 @@ final class GestureObject: NSObject {
                 lineDashView.frame.origin.x = point.x
                 lineDashView.frame.size.width = -point.x
                 lineDashView.frame.origin.y = point.y
-                lineDashView.frame.size.height = -point.y + lineDashView.screenWidth + 60
+                lineDashView.frame.size.height = -point.y + screenWidth + 30
             }
         case .touchTopLeft:
             if endPoint.y != 0 {
@@ -191,7 +191,7 @@ final class GestureObject: NSObject {
                 lineDashView.frame.origin.x =  point.x
                 lineDashView.frame.size.width =  -point.x + imageView.frame.width
                 lineDashView.frame.origin.y = point.y
-                lineDashView.frame.size.height = -point.y + lineDashView.screenWidth + 60
+                lineDashView.frame.size.height = -point.y + screenWidth + 30
                 break
             }
         }

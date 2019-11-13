@@ -10,8 +10,8 @@ import UIKit
 
 final class LineDashView: UIView {
     
-    var screenHeight = UIScreen.main.bounds.height - 30
-    var screenWidth  = UIScreen.main.bounds.width
+    private var screenHeight = UIScreen.main.bounds.height - 15
+    private var screenWidth  = UIScreen.main.bounds.width
 
     lazy var openImageView: UIImageView = {
         let openImageView = UIImageView()
@@ -19,7 +19,7 @@ final class LineDashView: UIView {
     }()
 
     private var xWidth                        : CGFloat = 5
-    private var yHeight                       : CGFloat = 30
+    private var yHeight                       : CGFloat = 5
     private var editing                       = Bool()
     private var applyInitialCroppedImageFrame = Bool()
     private var cropBoxFrame                  : CGRect?
