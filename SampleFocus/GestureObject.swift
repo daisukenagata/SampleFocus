@@ -8,27 +8,23 @@
 
 import UIKit
 
-enum TouchFlag {
-    case touchTopLeft
-    case touchTopRight
-    case touchSideLeft
-    case touchTop
-    case touchDown
-    case touchBottomLeft
-    case touchBottomRight
-    case touchSideRight
-    case touchNone
-}
-
 final class GestureObject: UIView {
 
-    var framePoint = CGPoint()
-    var endPoint = CGPoint()
-    var endFrame = CGRect()
-    var originY = CGFloat()
-    var originX = CGFloat()
-    var magnification: CGFloat = 2
-    
+    enum TouchFlag {
+        case touchTopLeft
+        case touchTopRight
+        case touchSideLeft
+        case touchTop
+        case touchDown
+        case touchBottomLeft
+        case touchBottomRight
+        case touchSideRight
+        case touchNone
+    }
+
+    var framePoint  = CGPoint()
+    var endPoint    = CGPoint()
+    var endFrame    = CGRect()
     var timer       = Timer()
     var timerFlag   = Bool()
     var touchFlag   = TouchFlag.touchBottomRight
@@ -36,6 +32,10 @@ final class GestureObject: UIView {
     var imageView   : UIImageView?
     var cALayerView : CALayerView?
     var lineDashView: LineDashView?
+
+    private var originY = CGFloat()
+    private var originX = CGFloat()
+    private var magnification: CGFloat = 2
     
     init(){
         super.init(frame: .zero)
