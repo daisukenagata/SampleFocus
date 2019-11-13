@@ -10,22 +10,24 @@ import UIKit
 
 final class LineDashView: UIView {
     
-    var xWidth: CGFloat = 5
-    var yHeight: CGFloat = 30
-    var editing = Bool()
-    var applyInitialCroppedImageFrame = Bool()
     var screenHeight = UIScreen.main.bounds.height - 30
     var screenWidth = UIScreen.main.bounds.width
-    var cropBoxFrame: CGRect!
-    var lineColor = UIBezierPath()
-    var lineColor2 = UIBezierPath()
-    var lineColor3 = UIBezierPath()
-    var lineColor4 = UIBezierPath()
-    var borderView = UIView()
+
     lazy var openImageView: UIImageView = {
         let openImageView = UIImageView()
         return openImageView
     }()
+
+    private var xWidth: CGFloat = 5
+    private var yHeight: CGFloat = 30
+    private var editing = Bool()
+    private var applyInitialCroppedImageFrame = Bool()
+    private var cropBoxFrame: CGRect!
+    private var lineColor = UIBezierPath()
+    private var lineColor2 = UIBezierPath()
+    private var lineColor3 = UIBezierPath()
+    private var lineColor4 = UIBezierPath()
+    private var borderView = UIView()
 
 
     override init(frame: CGRect) {
