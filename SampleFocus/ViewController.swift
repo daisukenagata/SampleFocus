@@ -20,7 +20,8 @@ class ViewController: UIViewController {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { v in
+        UIView.setAnimationsEnabled(false)
+        coordinator.animate(alongsideTransition: { _ in
             self.setView()
         }, completion: nil)
     }
@@ -29,5 +30,6 @@ class ViewController: UIViewController {
         self.g?.removeFromSuperview()
         self.g = GestureView(self.view.frame ,imageSt: "Mac")
         self.view.addSubview(self.g ?? UIView())
+        UIView.setAnimationsEnabled(true)
     }
 }
